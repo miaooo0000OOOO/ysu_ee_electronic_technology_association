@@ -106,7 +106,24 @@ test
 
 廖雪峰的Git教程: [https://www.liaoxuefeng.com/wiki/896043488029600](https://www.liaoxuefeng.com/wiki/896043488029600)
 
-## 使用github
+## 使用github存储个人项目
 
 为了使用github，你可能需要`科学上网`
 
+进入Github(网址: [https://github.com/](https://github.com/))，注册一个账号(Sign up)或者登录一个已有的Github账号(Sign in)
+
+如果你是第一次注册github用户，强烈建议起一个简短有意义的英文用户名
+
+登录后，点击网页右上角的用户头像，下拉栏中点`Your repositories(你的存储库)`，点击绿色的`new`按钮来创建存储库
+
+`Repository name(存储库名)`推荐英文大小写+下划线+数字，`Description(描述)`可以简短写下你项目的描述，其他保持默认，点击`Create repository(创建存储库)`
+
+这时，你的存储库是空的，复制存储库的网址(一般是`https://github.com/你的用户名/存储库名`)
+
+选择一个已建立git储存库的项目，点击`源代码管理`右上角的三个点，依次选择`远程`->`添加远程存储库...`，粘贴你刚才复制的存储库网址，按回车，vscode询问存储库名，输入你的存储库名，这样就将本地存储库与远程存储库进行了绑定
+
+依然点击`源代码管理`右上角的三个点，点击推送，等待上传成功
+
+刷新Github存储库页面，看看你的文件是否提交上去了
+
+如果你的文件上传成功，那么恭喜你入门了Git与Github使用
