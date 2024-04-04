@@ -4,7 +4,11 @@
 
 git 版本管理工具
 
+![git_icon](../assets/imgs/git_icon.png)
+
 github 世界上最大的开源代码平台
+
+![github_icon](../assets/imgs/github_icon.png)
 
 ## 为什么要使用git和github
 
@@ -28,15 +32,23 @@ git 官网: [https://git-scm.com/](https://git-scm.com/)
 
 git 下载(Windows): [https://git-scm.com/download/win](https://git-scm.com/download/win) 
 
-*进入上述网址，点击`Click here to download`*
+进入上述网址，点击`Click here to download`
+
+![Click here to download](../assets/imgs/Click_here_to_download.png)
+
+git安装包保存在github上，如果你连不上，需要`科学上网`，或者使用保存在中国服务器上的镜像，例如华为保存的`git for windows`[https://mirrors.huaweicloud.com/git-for-windows/](https://mirrors.huaweicloud.com/git-for-windows/)
+
+![git for windows华为镜像1](../assets/imgs/git_for_windows_huawei_mirror_1.png)
+
+![git for windows华为镜像2](../assets/imgs/git_for_windows_huawei_mirror_2.png)
+
+*版本号可能不一样，建议用最新的*
 
 *如果你不知道你在用什么操作系统，那么你在使用Windows操作系统*
 
 *如果你不知道你的电脑是64位还是32位，那么你的电脑是64位的*
 
-你应该下载安装包安装，不要从源码编译安装
-
-以下教程不使用GitHub Desktop作为git可视化工具，而是使用vscode插件实现git可视化
+双击安装包进行安装，除了需要修改安装位置之外其他均保持默认
 
 ## 配置vscode git可视化插件
 
@@ -45,6 +57,8 @@ git 下载(Windows): [https://git-scm.com/download/win](https://git-scm.com/down
 如果不会，请看vscode基本操作的教程
 
 点击拓展、搜索`Git Graph`拓展，选择并安装
+
+![安装Git Graph拓展](../assets/imgs/install_git_graph_ext.png)
 
 ## 个人项目本地git版本管理案例
 
@@ -62,7 +76,11 @@ test
 
 在`hello.txt`中写入`Hello World!`并保存
 
+![vscode打开文件夹](../assets/imgs/vscode_open_folder.png)
+
 打开vscode，点击左上角的`文件`，选择`打开文件夹`，选择刚才新建的`test`文件夹
+
+![初始化仓库](../assets/imgs/init_repository.png)
 
 在左侧面板中点击`源代码管理`，点击`初始化仓库`，这时会显示文件的更改情况
 
@@ -72,27 +90,29 @@ test
 
 点击提交按钮
 
+![第一次提交](../assets/imgs/git_first_commit.png)
+
 这时git已经保存了这个版本的内容
 
-在`hello.txt`新加一行：`跨越长城，走向世界`
+在`hello.txt`新加一行：`跨越长城，走向世界`，保存文件
 
 查看`源代码管理`，可以看到`更改`一栏有`hello.txt`文件
 
 按加号`暂存所有更改`，编辑`消息`：`添加了中文`，点击提交
 
+![第二次提交](../assets/imgs/git_second_commit.png)
+
 点击分支图标`View Git Graph`，可以看到两次提交的描述、提交时间和作者
 
-此时，第二个提交有`main`或`master`标签，如果想查看第一个版本，可以右键第一个版本，选择`Checkout`，这时`hello.txt`就恢复到第一个版本的样子。
+![Git Graph](../assets/imgs/git_graph.png)
+
+此时，第二个提交有`main`或`master`标签，如果想查看第一个版本，可以右键第一个版本，选择`Checkout(签出)`，这时`hello.txt`就恢复到第一个版本的样子。
+
+![查看第一个版本](../assets/imgs/git_checkout_to_first_commit.png)
 
 右键第二个版本，选择`Checkout`，文件又回到了第二个版本
 
-**! ! ! 以下是不可恢复操作，请谨慎执行 ! ! !**
-
-如果你想删除第二个版本，可以右键第二个版本描述左侧的分支记号，选择`Delete Branch...`，接着选择`Yes,delete`，可以看到第二次提交的分支记号消失了
-
-这时右键第一个版本，点击`Checkout`，可以看到第二次提交消失了
-
-选择`Create Branch`，名称填写刚才你删除的分支名称(一般是`master`或`main`)，点击确定即可
+![查看第二个版本](../assets/imgs/git_checkout_to_second_commit.png)
 
 ## 进一步了解Git
 
@@ -116,14 +136,36 @@ test
 
 登录后，点击网页右上角的用户头像，下拉栏中点`Your repositories(你的存储库)`，点击绿色的`new`按钮来创建存储库
 
+![Github头像](../assets/imgs/github_head_img.png)
+
+![你的存储库](../assets/imgs/your_repositories.png)
+
+![新的存储库](../assets/imgs/new_repository.png)
+
 `Repository name(存储库名)`推荐英文大小写+下划线+数字，`Description(描述)`可以简短写下你项目的描述，其他保持默认，点击`Create repository(创建存储库)`
+
+![创建存储库](../assets/imgs/create_repository.png)
 
 这时，你的存储库是空的，复制存储库的网址(一般是`https://github.com/你的用户名/存储库名`)
 
+![存储库网址](../assets/imgs/repository_url.png)
+
 选择一个已建立git储存库的项目，点击`源代码管理`右上角的三个点，依次选择`远程`->`添加远程存储库...`，粘贴你刚才复制的存储库网址，按回车，vscode询问存储库名，输入你的存储库名，这样就将本地存储库与远程存储库进行了绑定
 
-依然点击`源代码管理`右上角的三个点，点击推送，等待上传成功
+![添加远程存储库](../assets/imgs/add_remote_repository.png)
+
+进入`Git Graph`，右键分支标记，点击`Checkout Branch(签出分支)`
+
+![签出分支](../assets/imgs/checkout_branch.png)
+
+依然点击`源代码管理`右上角的三个点，点击`拉取，推送`->`推送到...`，选择你刚才添加的存储库名，等待上传成功
+
+![推送到](../assets/imgs/push_to.png)
+
+![推送到远程存储库](../assets/imgs/push_to_remote.png)
 
 刷新Github存储库页面，看看你的文件是否提交上去了
+
+![Github存储库页面](../assets/imgs/github_repository_page.png)
 
 如果你的文件上传成功，那么恭喜你入门了Git与Github使用
