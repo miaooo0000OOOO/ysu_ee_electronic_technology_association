@@ -60,6 +60,31 @@ git安装包保存在github上，如果你连不上，需要`科学上网`，或
 
 ![安装Git Graph拓展](../assets/imgs/install_git_graph_ext.png)
 
+## 注册github账号
+
+为了使用github，你可能需要`科学上网`
+
+进入Github(网址: [https://github.com/](https://github.com/))，注册一个账号(Sign up)或者登录一个已有的Github账号(Sign in)
+
+如果你是第一次注册github用户，强烈建议起一个简短有意义的英文用户名
+
+记住你的Github用户名和注册用的邮箱
+
+## 配置git用户
+
+打开git命令行，输入以下两行命令
+
+```bash
+git config --global user.name "改成你的用户名"
+git config --global user. email "改成你的邮箱"
+```
+
+例如
+```bash
+git config --global user.name "YourUserName"
+git config --global user. email "114514@qq.com"
+```
+
 ## 个人项目本地git版本管理案例
 
 创建一个文件夹，在此文件夹中保存你的代码
@@ -128,12 +153,6 @@ test
 
 ## 使用github存储个人项目
 
-为了使用github，你可能需要`科学上网`
-
-进入Github(网址: [https://github.com/](https://github.com/))，注册一个账号(Sign up)或者登录一个已有的Github账号(Sign in)
-
-如果你是第一次注册github用户，强烈建议起一个简短有意义的英文用户名
-
 登录后，点击网页右上角的用户头像，下拉栏中点`Your repositories(你的存储库)`，点击绿色的`new`按钮来创建存储库
 
 ![Github头像](../assets/imgs/github_head_img.png)
@@ -169,3 +188,21 @@ test
 ![Github存储库页面](../assets/imgs/github_repository_page.png)
 
 如果你的文件上传成功，那么恭喜你入门了Git与Github使用
+
+## 编写的目的
+
+本教程是一个快速上手的git和github教程，目标读者是初入计算机编程的个人开发者，预想需求是使用git替代压缩软件进行版本管理、使用Github替代百度网盘在云上存储代码
+
+因此本教程应能够快速上手、最小化前置知识
+
+如果你在阅读本教程后遇到了新需求，你的所需的知识点可能是：
+
+- 命令行的使用
+- git分支与合并
+- 如何选择不同开源许可证
+- github issue(提问，报告bug) fork(从他人的存储库分叉) pull requests(为他人的项目提交代码) collaborators(合作开发者)
+- 为项目编写README.md、文档、Wiki(百科)
+
+## 进一步阅读材料
+
+[Github官方教程](https://docs.github.com/zh/get-started/start-your-journey)
