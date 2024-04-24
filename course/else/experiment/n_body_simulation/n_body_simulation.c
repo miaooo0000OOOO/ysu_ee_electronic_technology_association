@@ -33,12 +33,23 @@ typedef struct Env
     // 星球数量只能减少不能增加
 } Env;
 
+/// @brief 初始化环境
+/// @param n 星球数量
+/// @param stars 星球数组，长度为n
+/// @param G 引力常数
+/// @param dis_limit 碰撞距离
+/// @return 初始化的环境结构体
 Env new_env(Int n, Star *const stars, Float G, Float dis_limit)
 {
     Env e = {0, n, stars, G, dis_limit};
     return e;
 }
 
+/// @brief 初始化星球
+/// @param p 位置向量
+/// @param v 速度向量
+/// @param m 质量
+/// @return 初始化的星球结构体
 Star new_star(Vec p, Vec v, Float m)
 {
     assert(m > 0);
@@ -46,6 +57,10 @@ Star new_star(Vec p, Vec v, Float m)
     return s;
 }
 
+/// @brief 仿真星球在合外力F作用下在一个时间步长dt内的运动
+/// @param s 星球
+/// @param F_sum 合外力
+/// @param dt 时间步长
 void star_step(Star *const s, Vec F_sum, Float dt)
 {
     Vec a;
@@ -104,6 +119,9 @@ void collision_merge(Env *e)
         ;
 }
 
+/// @brief 仿真环境在一个时间步长dt内的运动
+/// @param e 环境
+/// @param dt 时间步长
 void env_step(Env *const e, Float dt)
 {
     Int i, j;
@@ -135,6 +153,8 @@ void env_step(Env *const e, Float dt)
     e->time += dt;
 }
 
+/// @brief 打印星球
+/// @param s 星球
 void star_log(Star const *const s)
 {
     char *str_p, *str_v;
@@ -147,6 +167,8 @@ void star_log(Star const *const s)
     printf("m:%lf\n", s->m);
 }
 
+/// @brief 打印环境
+/// @param e 环境
 void env_log(Env const *const e)
 {
     printf(LINE);
@@ -163,16 +185,23 @@ void env_log(Env const *const e)
     printf(LINE);
 }
 
+/// @brief [0, 1)平均分布的随机数
+/// @return [0, 1)平均分布的随机数
 Float r()
 {
     return (Float)rand() / RAND_MAX;
 }
 
+/// @brief [-1, 1)平均分布的随机数
+/// @return [-1, 1)平均分布的随机数
 Float ur()
 {
     return (Float)rand() / RAND_MAX * 2 - 1;
 }
 
+/// @brief 随机生成星球
+/// @param n 星球数量
+/// @return 有所有权的随机生成的星球数组
 Star *random_generate_stars(Int n)
 {
     Star *stars = malloc(n * sizeof(Star));
