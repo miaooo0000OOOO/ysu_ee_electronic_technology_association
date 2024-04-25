@@ -75,8 +75,8 @@ git安装包保存在github上，如果你连不上，需要`科学上网`，或
 打开git命令行，输入以下两行命令
 
 ```bash
-git config --global user.name "改成你的用户名"
-git config --global user. email "改成你的邮箱"
+git config --global user.name "改成你的Github用户名"
+git config --global user. email "改成你的注册邮箱"
 ```
 
 例如
@@ -139,18 +139,6 @@ test
 
 ![查看第二个版本](../assets/imgs/git_checkout_to_second_commit.png)
 
-## 进一步了解Git
-
-*以下教程大多基于命令行讲述，你需要熟悉使用命令行*
-
-推荐阅读：
-
-官方教程：[https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2)
-
-官方教程的PDF文档: [https://github.com/progit/progit2-zh/releases/download/2.1.68/progit.pdf](https://github.com/progit/progit2-zh/releases/download/2.1.68/progit.pdf)
-
-廖雪峰的Git教程: [https://www.liaoxuefeng.com/wiki/896043488029600](https://www.liaoxuefeng.com/wiki/896043488029600)
-
 ## 使用github存储个人项目
 
 登录后，点击网页右上角的用户头像，下拉栏中点`Your repositories(你的存储库)`，点击绿色的`new`按钮来创建存储库
@@ -205,4 +193,22 @@ test
 
 ## 进一步阅读材料
 
-[Github官方教程](https://docs.github.com/zh/get-started/start-your-journey)
+*以下教程大多基于命令行讲述，你需要熟悉使用命令行*
+
+Git教程：
+
+一小时掌握Git 教学视频(推荐):[https://www.bilibili.com/video/BV1HM411377j/](https://www.bilibili.com/video/BV1HM411377j/)
+
+Pro Git电子书:[https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2)
+
+Pro Git的PDF文档: [https://github.com/progit/progit2-zh/releases/download/2.1.68/progit.pdf](https://github.com/progit/progit2-zh/releases/download/2.1.68/progit.pdf)
+
+廖雪峰的Git教程: [https://www.liaoxuefeng.com/wiki/896043488029600](https://www.liaoxuefeng.com/wiki/896043488029600)
+
+Github教程：
+
+Github官方教程：[https://docs.github.com/zh/get-started/start-your-journey](https://docs.github.com/zh/get-started/start-your-journey)
+
+Markdown教程：
+
+Markdown + Typora/VSCode 超全教程：[https://www.bilibili.com/video/BV1hG411p7fX/](https://www.bilibili.com/video/BV1hG411p7fX/)
