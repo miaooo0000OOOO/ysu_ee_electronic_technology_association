@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x8fd0;&#x7b97;&#x7b26;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h2 id="运算符">运算符</h2>
+<p>运算符可以分为算数运算符、关系运算符、逻辑运算符、位运算符、赋值运算符和其他运算符</p>
+<p>参与运算的值，我们称其为操作数</p>
+<p>在描述运算符时，我们会称其为n元运算符，n指的是操作数的个数，例如：</p>
+<p>减法运算符是二元运算符，表达式可以写作<code>a-b</code>，可见有两个操作数参与运算</p>
+<p>负号运算符是一元运算符，表达式可以写作<code>-a</code>，可见有一个操作数参与运算</p>
+<p>虽然都使用负号，但是一个是一元运算符，一个是二元运算符，因为操作数个数不同</p>
+<h3 id="运算符的优先级和结合性">运算符的优先级和结合性</h3>
+<p>我们小学就学过，先乘除后加减，在编程中，我们说乘法和除法的优先级比加法和减法高</p>
+<p>在优先级相同的情况下，我们从左到右计算，我们称该运算左结合</p>
+<h3 id="算数运算符">算数运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>加法</td>
+</tr>
+<tr>
+<td>-</td>
+<td>当只有一个值参与运算时，取这个值的相反数；有两个值时，计算减法</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘法</td>
+</tr>
+<tr>
+<td>/</td>
+<td>除法</td>
+</tr>
+<tr>
+<td>%</td>
+<td>模运算，即两数相除的余数 (操作数必须是整型)</td>
+</tr>
+<tr>
+<td>++</td>
+<td>自增运算符，操作数必须是变量，使变量加一</td>
+</tr>
+<tr>
+<td>--</td>
+<td>自减运算符，操作数必须是变量，使变量减一</td>
+</tr>
+</tbody>
+</table>
+<h4 id="补充解释仅作了解初学请跳过">补充解释(仅作了解，初学请跳过)：</h4>
+<p>除法的特殊情况是除数为浮点数0</p>
+<pre><code>1.0 / 0.0 结果为inf(无穷大)
+-1.0 / 0.0 结果为-inf(负无穷)
+-1.0 / -0.0 结果为inf(无穷大)
+是的，浮点数正零和负零是不同的
+</code></pre>
+<p>当负数参与模运算时，运算规则会比较复杂，所以不建议你使用负数参与模运算</p>
+<p>一个使用模运算的典型例子是角度限制，将角度转换为在0~360度内的相同角度</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> theta = <span class="hljs-number">114514</span>;
+theta = theta % <span class="hljs-number">360</span>;
+<span class="hljs-comment">// 这时theta为34</span>
+
+theta = <span class="hljs-number">-90</span>
+theta = theta % <span class="hljs-number">360</span>;
+<span class="hljs-comment">// 这时theta为-90度，不在我们希望的范围里</span>
+
+<span class="hljs-comment">// 如果知道theta的输入值的范围，代码可以写成</span>
+theta = (theta + <span class="hljs-number">360</span> * <span class="hljs-number">100</span>) % <span class="hljs-number">360</span>;
+<span class="hljs-comment">// 这时theta为270</span>
+<span class="hljs-comment">// 如果theta &lt; -360 * 100，就会产生非期望的结果</span>
+</code></pre>
+<p>自增操作符和自减运算符可以参与复合运算，例如：</p>
+<pre><code class="language-C">
+<span class="hljs-type">int</span> a = <span class="hljs-number">0</span>;
+a++; <span class="hljs-comment">// 等同于a = a + 1</span>
+<span class="hljs-comment">// 这时a为1</span>
+
+++a; <span class="hljs-comment">// 等同于a++ 不建议使用</span>
+<span class="hljs-comment">// 这时a为2</span>
+
+a = a++; <span class="hljs-comment">// a++先保留a的值2，再将a自增，最后将2作为结果。因此最后a依然是2</span>
+
+a = ++a; <span class="hljs-comment">// ++a先将a自增为3，再将3作为++a的结果。因此最后a为3</span>
+
+a = <span class="hljs-number">3</span> * ++a + a++ - --a; <span class="hljs-comment">// 不要写这样的代码，不要浪费时间理解这行代码</span>
+</code></pre>
+<p>在以上代码中你是否感到自增自减运算符参与运算时会让本来简单的运算变得异常复杂</p>
+<p>因此结论是仅像<code>a++;</code>或<code>a--;</code>这样使用自增自减运算符，不要让它们参与运算</p>
+<p><strong>尝试理解自增自减运算符参与复合计算的代码会变得不幸!!!</strong></p>
+<h3 id="关系运算符">关系运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>判断相等</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>判断是否小于</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>判断是否小于等于</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>判断是否大于</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>判断是否大于等于</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>判断是否不等于</td>
+</tr>
+</tbody>
+</table>
+<p>这里列举几个判断相等的使用场景</p>
+<pre><code class="language-C"><span class="hljs-type">float</span> x = <span class="hljs-number">3</span>;
+<span class="hljs-type">int</span> a = <span class="hljs-number">5</span>;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, (<span class="hljs-type">int</span>)x == x);    <span class="hljs-comment">// 判断浮点数x是否为整数</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>);     <span class="hljs-comment">// 判断整数a是否为偶数</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>);     <span class="hljs-comment">// 判断整数a是否为奇数</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a % <span class="hljs-number">7</span> == <span class="hljs-number">0</span>);     <span class="hljs-comment">// 判断整数a是否为7的倍数</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-number">3.5</span> &lt;= x &amp;&amp; x &lt; <span class="hljs-number">7</span>); <span class="hljs-comment">// 判断x是否在[3.5, 7)区间内</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-number">3.5</span> &lt;= x &lt; <span class="hljs-number">7</span>); <span class="hljs-comment">// 典型错误，并且可以编译通过</span>
+<span class="hljs-comment">// 先计算3.5 &lt;= x，返回0或1，0或1一定小于7，所以无论x取什么值，结果都是true</span>
+</code></pre>
+<p>使用关系运算符的一个常见错误是混淆<code>a=b</code>与<code>a==b</code></p>
+<p>关系运算符的结果一定是bool类型</p>
+<p>如果a与b相等，<code>a==b</code>为true，否则为false</p>
+<p>而<code>a=b</code>的结果为b</p>
+<p>另一个常见错误是判断浮点数是否相等</p>
+<p>例如<code>0.1 + 0.2 == 0.3</code>的结果竟然是false</p>
+<p>因为浮点数是有表示精度的，因此在工程代码中判断浮点数是否相等会使用以下方法：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span> <span class="hljs-comment">// 使用了math.h中的fabs函数</span></span>
+<span class="hljs-comment">// fabs是取浮点数绝对值的函数</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> EPSILON 0.000001</span>
+<span class="hljs-comment">// 宏定义语法，将EPSILON定义为常量0.000001</span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">fabs</span>((<span class="hljs-number">0.1</span> + <span class="hljs-number">0.2</span>) - <span class="hljs-number">0.3</span>) &lt;= EPSILON);
+    <span class="hljs-comment">// 判断0.1 + 0.2是否与0.3相等</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>只要两个浮点数的距离在容许误差半径(EPSILON)之内就认为两浮点数相等</p>
+<h3 id="逻辑运算符">逻辑运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;&amp;</td>
+<td>与运算</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或运算</td>
+</tr>
+<tr>
+<td>!</td>
+<td>非运算</td>
+</tr>
+</tbody>
+</table>
+<p>为了描述逻辑运算，我们常使用真值表</p>
+<p>真值表列举出了所有输入布尔值组合所对应的输出布尔值</p>
+<p>与运算有两个布尔型操作数，分别记为A、B，一个布尔输出</p>
+<p>可列出与运算真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A &amp;&amp; B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+</tr>
+<tr>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+</tbody>
+</table>
+<p>例如第一行表示当输入A，B均为F时，输出C为F</p>
+<p>或运算真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A || B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+</tbody>
+</table>
+<p>非运算只有一个输入，记为A</p>
+<p>非运算真值表：</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>!A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+<p>注意逻辑运算符的优先级：</p>
+<p>非运算 &gt; 与运算 &gt; 或运算</p>
+<h4 id="补充解释初学者请跳过">补充解释(初学者请跳过)：</h4>
+<p><code>或运算</code>和<code>与运算</code>为短路运算符，这指的是如果左操作数能确定逻辑表达式的值，就不会计算右操作数</p>
+<p>例如如果左操作数为真，则<code>或运算</code>表达式必定为真，就不会计算右操作数</p>
+<p>如果左操作数为假，则<code>与运算</code>表达式必定为假，也不会计算右操作数</p>
+<p>例如：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdbool.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-literal">true</span> || (<span class="hljs-number">0</span> / <span class="hljs-number">0</span>));
+    <span class="hljs-comment">// 输出1，因为左操作数为true，所以不计算0 / 0，直接得到true</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-literal">true</span> &amp;&amp; (<span class="hljs-number">0</span> / <span class="hljs-number">0</span>));
+    <span class="hljs-comment">// 报错，因为左操作数为true，不能确定 与运算 的结果，计算右操作数，得到算数异常</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="位运算符">位运算符</h3>
+<p>位运算作用于每一个二进制位并对每一位进行运算</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>按位与运算</td>
+</tr>
+<tr>
+<td>|</td>
+<td>按位或运算</td>
+</tr>
+<tr>
+<td>~</td>
+<td>按位非运算</td>
+</tr>
+<tr>
+<td>^</td>
+<td>按位异或运算</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>左移运算符，将所有的二进制为向左移动，超过左侧的二进制位丢弃，右侧补零</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>右移运算符，将所有的二进制为向右移动，超过右侧的二进制位丢弃，左侧补零</td>
+</tr>
+</tbody>
+</table>
+<p>如果不溢出，左移n位相当于乘2的n次方，右移n位相当于除2的n次方</p>
+<p>异或运算真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A ^ B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+<p>例如A = 60，B = 13，用二进制表示，可以写成：</p>
+<pre><code>A      = 0011 1100
+B      = 0000 1101
+------------------
+A &amp; B  = 0000 1100
+A | B  = 0011 1101
+A ^ B  = 0011 0001
+~A     = 1100 0011
+!A     = 0000 0000
+A &amp;&amp; B = 0000 0001
+A || B = 0000 0001
+A &lt;&lt; 2 = 1111 0000
+B &gt;&gt; 2 = 0000 0011
+</code></pre>
+<p>位运算常用来操作寄存器标志位</p>
+<p>例如一个无符号整数占8比特内存，对应8盏小灯。从右向左数，第1到8位分别对应第1到8盏小灯</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">char</span> n;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);
+    <span class="hljs-type">char</span> led_reg = <span class="hljs-number">0b01001001</span>;
+
+    <span class="hljs-comment">// 亮起第3盏灯</span>
+    led_reg = led_reg | <span class="hljs-number">0b00000100</span>;
+
+    <span class="hljs-comment">// 关闭第7盏灯</span>
+    led_reg = led_reg &amp; <span class="hljs-number">0b10111111</span>;
+
+    <span class="hljs-comment">// 开启第n盏灯</span>
+    led_reg =  led_reg | <span class="hljs-number">1</span> &lt;&lt; (n<span class="hljs-number">-1</span>);
+
+    <span class="hljs-comment">// 循环左移一位(第1位移到第2位，第2位移到第3位...第8位移到第1位)</span>
+    <span class="hljs-comment">// 效果是向左的流水灯</span>
+    led_reg = ((<span class="hljs-number">0b10000000</span> &amp; led_reg) &gt;&gt; <span class="hljs-number">7</span>) | (led_reg &lt;&lt; <span class="hljs-number">1</span>);
+
+    <span class="hljs-comment">// 循环右移一位(第2位移到第1位，第3位移到第2位...第1位移到第8位)</span>
+    <span class="hljs-comment">// 效果是向右的流水灯</span>
+    led_reg = ((<span class="hljs-number">0b00000001</span> &amp; led_reg) &lt;&lt; <span class="hljs-number">7</span>) | (led_reg &gt;&gt; <span class="hljs-number">1</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="赋值运算符">赋值运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>将右操作数赋值到左侧的变量里</td>
+</tr>
+<tr>
+<td>+=</td>
+<td>a += b 等同于 a = a + b</td>
+</tr>
+<tr>
+<td>-=</td>
+<td>a -= b 等同于 a = a - b</td>
+</tr>
+<tr>
+<td>*=</td>
+<td>a *= b 等同于 a = a * b</td>
+</tr>
+<tr>
+<td>/=</td>
+<td>a /= b 等同于 a = a / b</td>
+</tr>
+<tr>
+<td>%=</td>
+<td>a %= b 等同于 a = a % b</td>
+</tr>
+<tr>
+<td>&lt;&lt;=</td>
+<td>a &lt;&lt;= b 等同于 a = a &lt;&lt; b</td>
+</tr>
+<tr>
+<td>&gt;&gt;=</td>
+<td>a &gt;&gt;= b 等同于 a = a &gt;&gt; b</td>
+</tr>
+<tr>
+<td>&amp;=</td>
+<td>a &amp;= b 等同于 a = a &amp; b</td>
+</tr>
+<tr>
+<td>|=</td>
+<td>a |= b 等同于 a = a | b</td>
+</tr>
+<tr>
+<td>^=</td>
+<td>a ^= b 等同于 a = a ^ b</td>
+</tr>
+</tbody>
+</table>
+<h3 id="其他运算符">其他运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sizeof()</td>
+<td>返回变量所占内存的字节数</td>
+</tr>
+</tbody>
+</table>
+<p>sizeof不是函数，而是运算符，运算结果是unsigned long类型</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">int</span> a = <span class="hljs-number">4</span>;
+    <span class="hljs-type">short</span> b;
+    <span class="hljs-type">double</span> c;
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;变量 a 占%lu字节\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a));
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;变量 b 占%lu字节\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(b));
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;变量 c 占%lu字节\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(c));
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;float 占%lu字节\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">float</span>));
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;double 占%lu字节\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">double</span>));
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>输出：</p>
+<pre><code>变量 a 占4字节
+变量 b 占2字节
+变量 c 占8字节
+float 占4字节
+double 占8字节
+</code></pre>
+<h2 id="流程控制语句">流程控制语句</h2>
+<p>程序执行的流程可以分为三类：顺序结构、分支结构、循环结构</p>
+<h3 id="顺序结构">顺序结构</h3>
+<p>我们之前所写的程序都是顺序结构的，即按照从前到后的顺序执行</p>
+<h3 id="分支结构">分支结构</h3>
+<p>在C语言中，<code>if...else</code>语句和<code>switch...case</code>语句均可以实现分支结构程序</p>
+<h4 id="使用if实现分支结构">使用if实现分支结构</h4>
+<p>if语句的语法如下</p>
+<pre><code class="language-C"><span class="hljs-keyword">if</span> (条件A) {
+    语句块A
+}
+</code></pre>
+<p>只有当小括号里的条件为真时，才会执行大括号里的语句块A</p>
+<p>如果大括号里只有一条语句，可以省略大括号，但不建议你这样做</p>
+<pre><code class="language-C"><span class="hljs-keyword">if</span> (条件) {
+    语句块A
+}
+<span class="hljs-keyword">else</span> {
+    语句块B
+}
+</code></pre>
+<p>当条件为真时，会执行语句块A，否则会执行语句块B</p>
+<p>我们可以使用<code>if...else</code>语句计算除法，当除数为零时输出错误提示</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">double</span> a, b;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入两个数，计算它们的商（用空格隔开）:\n&quot;</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lf %lf&quot;</span>, &amp;a, &amp;b);
+    <span class="hljs-keyword">if</span> (b == <span class="hljs-number">0.0</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;除数不能为0\n&quot;</span>);
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f / %f = %f\n&quot;</span>, a, b, a / b);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>以上代码确实实现了上述功能，但是不能很好地区分正常执行和异常执行情况，请想象如果有多个异常情况需要判断，那么需要多个嵌套的if语句</p>
+<p>一个常用的技巧叫作提前返回</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">double</span> a, b;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入两个数，计算它们的商（用空格隔开）:\n&quot;</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lf %lf&quot;</span>, &amp;a, &amp;b);
+    <span class="hljs-keyword">if</span> (b == <span class="hljs-number">0.0</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;除数不能为0\n&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 在main函数里使用return语句会结束程序</span>
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f / %f = %f\n&quot;</span>, a, b, a / b);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>这样可以明显看出if判断的是异常情况，而不缩进的代码处理正常情况，如果有多个异常情况，可以写多个if语句，不会出现嵌套的情况</p>
+<pre><code class="language-C"><span class="hljs-keyword">if</span> (条件A) {
+    语句块A
+}
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (条件B) {
+    语句块B
+}
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (条件C) {
+    语句块C
+}
+<span class="hljs-keyword">else</span> {
+    语句块D
+}
+</code></pre>
+<p>C语言允许你使用<code>else if</code>语法构建多分支语句，它其实是嵌套的<code>if ... else</code>结构</p>
+<p>当条件A为真时，执行语句块A，否则判断条件B</p>
+<p>当条件B为真时，执行语句块B，否则判断条件C</p>
+<p>...</p>
+<p>当条件ABC都为假时，执行语句块D</p>
+<p>特点是语句块ABCD有且仅有一个被执行</p>
+<p>例如：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">long</span> <span class="hljs-type">long</span> score;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;你高考考了多少分啊？\n&quot;</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>, &amp;score);
+
+    <span class="hljs-comment">// 处理分数不在正常区间内的情况</span>
+    <span class="hljs-keyword">if</span> (score &lt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;你考的什么试？\n&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-keyword">if</span> (score &gt; <span class="hljs-number">750</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;750分是试卷的极限，不是你的极限\n&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (score &gt;= <span class="hljs-number">600</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;上清北\n&quot;</span>);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-number">400</span> &lt;= score &amp;&amp; score &lt; <span class="hljs-number">600</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;上燕大\n&quot;</span>);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-number">200</span> &lt;= score &amp;&amp; score &lt; <span class="hljs-number">400</span>)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;上鸟专\n&quot;</span>);
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;烤面筋\n&quot;</span>);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h4 id="使用switch实现分支结构">使用switch实现分支结构</h4>
+<p><code>switch</code> 语句的基本结构如下：</p>
+<pre><code class="language-C"><span class="hljs-keyword">switch</span> (表达式) {
+    <span class="hljs-keyword">case</span> 常量<span class="hljs-number">1</span>:
+        <span class="hljs-comment">// 当 表达式 等于 常量1 时执行的代码</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> 常量<span class="hljs-number">2</span>:
+        <span class="hljs-comment">// 当 表达式 等于 常量2 时执行的代码</span>
+        <span class="hljs-keyword">break</span>;
+    ...
+    <span class="hljs-keyword">default</span>:
+        <span class="hljs-comment">// 当 表达式 不等于任何一个 case 常量时执行的代码</span>
+}
+</code></pre>
+<p>其中：</p>
+<ul>
+<li><code>表达式</code> 是一个整数类型的表达式，它的值将用于与各个 <code>case</code> 标签进行匹配。</li>
+<li><code>case 常量</code> 是 <code>switch</code> 语句中的标签，每个 <code>case</code> 后跟随一个常量值，当 <code>表达式</code> 的值与某个 <code>case</code> 的常量值匹配时，执行该 <code>case</code> 下的代码。</li>
+<li><code>break</code> 语句用于终止 <code>switch</code> 语句。如果没有 <code>break</code>，程序将继续执行后面的 <code>case</code> 或 <code>default</code> 代码，直到遇到 <code>break</code> 或 <code>switch</code> 语句结束。</li>
+<li><code>default</code> 是可选的，用于在没有任何 <code>case</code> 匹配时执行默认代码。</li>
+</ul>
+<p>让我们通过一个示例来演示 <code>switch</code> 语句的使用。假设我们有一个表示星期几的变量，我们希望根据这个变量的值打印相应的星期几名称。</p>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">int</span> day = <span class="hljs-number">3</span>;
+
+    <span class="hljs-keyword">switch</span> (day) {
+        <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;星期一\n&quot;</span>);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;星期二\n&quot;</span>);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;星期三\n&quot;</span>);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;星期四\n&quot;</span>);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;星期五\n&quot;</span>);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;星期六\n&quot;</span>);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;星期日\n&quot;</span>);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;无效的星期\n&quot;</span>);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这个示例中，如果 <code>day</code> 的值是 3，程序将输出 &quot;星期三&quot;。如果 <code>day</code> 的值不是 1 到 7 之间的任何一个数值，程序将输出 &quot;无效的星期&quot;</p>
+<p>有时候，使用我们即将讲到的数组来代替<code>switch</code>会是一个更好的选择</p>
+<p>一个使用<code>switch</code>语句的典型错误是在<code>case</code>后面放置变量</p>
+<p>例如</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> n;
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);
+
+<span class="hljs-keyword">switch</span> (day) {
+    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;星期一\n&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> n: <span class="hljs-comment">// n是一个变量，它的值不能在编译时确定</span>
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;星期二\n&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    ...
+}
+</code></pre>
+<h3 id="循环结构">循环结构</h3>
+<h4 id="使用while实现循环">使用while实现循环</h4>
+<p><code>while</code> 循环是C语言中最常用的循环结构之一。它用于重复执行一段代码，直到指定的条件为假。</p>
+<p><code>while</code> 循环的基本结构如下：</p>
+<pre><code class="language-C"><span class="hljs-keyword">while</span> (条件) {
+    <span class="hljs-comment">// 循环体</span>
+}
+</code></pre>
+<ul>
+<li><code>条件</code> 是一个布尔表达式</li>
+<li>当 <code>条件</code> 为真时，循环体中的代码将被执行</li>
+<li>当 <code>条件</code> 为假时，循环结束，程序将继续执行循环体之后的代码</li>
+</ul>
+<p>下面是一个简单的示例，使用 <code>while</code> 循环打印从1到10的数字：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">while</span> (i &lt;= <span class="hljs-number">10</span>) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+        i++;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这个示例中，<code>i</code> 初始化为1，然后 <code>while</code> 循环检查 <code>i</code> 是否小于或等于10。如果条件为真，打印 <code>i</code> 的值，然后 <code>i</code> 增加1。这个过程重复进行，直到 <code>i</code> 大于10，循环结束。</p>
+<p>下面是一个使用 <code>while</code> 循环计算一个正整数的阶乘的示例：</p>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">int</span> n;
+    <span class="hljs-type">int</span> result = <span class="hljs-number">1</span>;
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入一个正整数：&quot;</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (i &lt;= n) {
+        result *= i;
+        i++;
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d 的阶乘是 %d\n&quot;</span>, n, result);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这个示例中，用户输入一个正整数 <code>n</code>，然后 <code>while</code> 循环计算 <code>n</code> 的阶乘。<code>i</code> 初始化为1，然后每次循环中 <code>result</code> 乘以 <code>i</code>，并且 <code>i</code> 增加1。这个过程重复进行，直到 <code>i</code> 大于 <code>n</code>。</p>
+<p>如果 <code>循环条件</code> 永远为真，<code>while</code> 循环将成为一个无限循环。例如：</p>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;这是一个无限循环\n&quot;</span>);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这个示例中，由于 <code>循环条件</code> 总是为1（真），循环体将一直执行，直到程序被强制终止。</p>
+<p>你可能遇到的典型错误是<code>写错循环条件</code>或<code>忘记改变循环变量</code>导致程序陷入无限循环</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> i, j;
+i = j = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">while</span> (i &lt;= <span class="hljs-number">10</span>) {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+    j++;
+}
+</code></pre>
+<p>显然这个程序会陷入无限循环</p>
+<h4 id="使用for实现循环">使用for实现循环</h4>
+<p><code>for</code> 循环是 C 语言中另一种常用的循环结构。它在执行固定次数的循环时特别有用。<code>for</code> 循环将初始化、条件测试和更新步骤集中在一行中，使代码更加紧凑和易读。</p>
+<p><code>for</code> 循环的基本结构如下：</p>
+<pre><code class="language-C"><span class="hljs-keyword">for</span> (初始化语句; 条件表达式; 更新语句) {
+    <span class="hljs-comment">// 循环体</span>
+}
+</code></pre>
+<p>其中：</p>
+<ul>
+<li><code>初始化语句</code>：在循环开始时执行一次，用于初始化循环控制变量。</li>
+<li><code>条件表达式</code>：在每次迭代前测试。如果条件为真，执行循环体；如果为假，结束循环。</li>
+<li><code>更新语句</code>：每次执行完循环体后执行，用于更新循环控制变量。</li>
+</ul>
+<p>下面是一个简单的示例，使用 <code>for</code> 循环打印从1到10的数字：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这个示例中，<code>i</code> 初始化为1，然后 <code>for</code> 循环检查 <code>i</code> 是否小于或等于10。如果条件为真，打印 <code>i</code> 的值，然后 <code>i</code> 增加1。这个过程重复进行，直到 <code>i</code> 大于10，循环结束。</p>
+<p>下面是一个使用 <code>for</code> 循环计算一个正整数的阶乘的示例：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">int</span> n;
+    <span class="hljs-type">int</span> result = <span class="hljs-number">1</span>;
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入一个正整数：&quot;</span>);
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) {
+        result *= i;
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d 的阶乘是 %d\n&quot;</span>, n, result);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这个示例中，用户输入一个正整数 <code>n</code>，然后 <code>for</code> 循环计算 <code>n</code> 的阶乘。<code>i</code> 初始化为1，然后每次循环中 <code>result</code> 乘以 <code>i</code>，并且 <code>i</code> 增加1。这个过程重复进行，直到 <code>i</code> 大于 <code>n</code>。</p>
+<p><code>for</code> 循环可以嵌套使用，即一个 <code>for</code> 循环体内可以包含另一个 <code>for</code> 循环。</p>
+<p>下面是一个使用嵌套 <code>for</code> 循环打印乘法表的示例：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">9</span>; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">9</span>; j++) {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d * %d = %2d  &quot;</span>, i, j, i * j);
+        }
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这个示例中，外层循环控制行数，内层循环控制列数，打印1到9的乘法表。</p>
+<p>在 <code>for</code> 循环中，<code>初始化语句</code>、<code>条件表达式</code> 和 <code>更新语句</code> 都是可选的。你可以根据需要省略其中的一部分，甚至全部省略，但分号不能省略。例如：</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">for</span> (;i &lt;= <span class="hljs-number">10</span>;) {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+    i++;
+}
+</code></pre>
+<p>在这个示例中，<code>初始化语句</code> 被移到 <code>for</code> 循环外部，而 <code>更新语句</code> 被放到循环体内部。</p>
+<h4 id="使用continue和break语句控制循环">使用continue和break语句控制循环</h4>
+<p><code>continue</code> 用于跳过当前迭循环剩余部分并开始下一次循环，而 <code>break</code> 用于立即终止循环。</p>
+<p>我们将结合使用 <code>continue</code> 和 <code>break</code>，跳过数字 5，并在遇到数字 8 时提前终止循环。</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) {
+        <span class="hljs-keyword">if</span> (i == <span class="hljs-number">5</span>) {
+            <span class="hljs-keyword">continue</span>;  <span class="hljs-comment">// 跳过数字 5</span>
+        }
+        <span class="hljs-keyword">if</span> (i == <span class="hljs-number">8</span>) {
+            <span class="hljs-keyword">break</span>;  <span class="hljs-comment">// 遇到数字 8 时提前终止循环</span>
+        }
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这个示例中，当 <code>i</code> 等于 5 时，<code>continue</code> 语句会跳过 <code>printf(&quot;%d\n&quot;, i);</code>，直接开始下一次循环。当 <code>i</code> 等于 8 时，<code>break</code> 语句会终止 <code>for</code> 循环，程序继续执行 <code>for</code> 循环后的代码。因此，输出结果将是 1 到 4 和 6 到 7。</p>
+<p>在嵌套的循环中，内层循环的<code>continue</code>和<code>break</code>只作用于内层循环，如果在内层想跳出外层循环，需要使用标志变量</p>
+<p>例如</p>
+<pre><code class="language-C"><span class="hljs-type">bool</span> flag = <span class="hljs-literal">false</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">10</span>; j++) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d\n&quot;</span>);
+        <span class="hljs-keyword">if</span> (i * j == <span class="hljs-number">45</span>) {
+            flag = <span class="hljs-literal">true</span>;    <span class="hljs-comment">// 设置循环变量</span>
+            <span class="hljs-keyword">break</span>;          <span class="hljs-comment">// 通过循环变量跳到外层循环外</span>
+        }
+    }
+    <span class="hljs-keyword">if</span> (flag) {
+        <span class="hljs-keyword">break</span>;
+    }
+}
+</code></pre>
+<h3 id="枚举算法">枚举算法</h3>
+<h4 id="使用枚举算法判断水仙花数">使用枚举算法判断水仙花数</h4>
+<p>水仙花数是指一个 n 位正整数，其各个位上的数字的 n 次方之和等于它本身。例如，三位数 153 是一个水仙花数，因为</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>153</mn><mo>=</mo><msup><mn>1</mn><mn>3</mn></msup><mo>+</mo><msup><mn>5</mn><mn>3</mn></msup><mo>+</mo><msup><mn>3</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">153 = 1^3 + 5^3 + 3^3 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">153</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">5</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord">3</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>枚举算法是一种简单而直接的方法，通过系统地列举所有可能的情况来找到问题的解。对于判断一个数是否为水仙花数，我们可以通过枚举所有的三位数来判断其中哪些是水仙花数。</p>
+<ol>
+<li><strong>初始化</strong>：确定枚举的范围，对于三位数来说，范围是 100 到 999。</li>
+<li><strong>遍历</strong>：遍历每一个数，分解出它的各个位上的数字。</li>
+<li><strong>计算</strong>：计算各个位上的数字的立方和。</li>
+<li><strong>判断</strong>：比较计算结果和原数，如果相等，则该数是水仙花数。</li>
+</ol>
+<p>下面是使用枚举算法判断三位数水仙花数的代码：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span>   <span class="hljs-comment">// 使用数学库math.h中的幂运算函数pow</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">int</span> number, digit, sum;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;三位数的水仙花数有：\n&quot;</span>);
+
+    <span class="hljs-keyword">for</span> (number = <span class="hljs-number">100</span>; number &lt;= <span class="hljs-number">999</span>; number++) {
+        <span class="hljs-type">int</span> temp = number;
+        sum = <span class="hljs-number">0</span>;
+
+        <span class="hljs-keyword">while</span> (temp != <span class="hljs-number">0</span>) {
+            digit = temp % <span class="hljs-number">10</span>;        <span class="hljs-comment">// 获取最后一位数字</span>
+            sum += <span class="hljs-built_in">pow</span>(digit, <span class="hljs-number">3</span>);     <span class="hljs-comment">// 计算数字的立方和</span>
+            <span class="hljs-comment">// pow(x, 3) 等同于 x * x * x</span>
+            temp /= <span class="hljs-number">10</span>;               <span class="hljs-comment">// 去掉最后一位数字</span>
+        }
+
+        <span class="hljs-keyword">if</span> (sum == number) {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, number);   <span class="hljs-comment">// 输出水仙花数</span>
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="末尾的话">末尾的话</h3>
+<p>还有一种循环语句是<code>do...while</code>语句，但它可以被<code>while</code>语句等效替换，不常用所以不讲</p>
+<p><code>goto</code>是无条件跳转语句，不要学习<code>goto</code>，不要使用<code>goto</code>！</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

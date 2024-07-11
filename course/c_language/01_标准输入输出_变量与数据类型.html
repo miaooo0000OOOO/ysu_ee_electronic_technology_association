@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Hello World</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h2 id="hello-world">Hello World</h2>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!\n&quot;</span>);   <span class="hljs-comment">// 打印 Hello World!</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在小熊猫C++中新建<code>hello.c</code>文件, 输入你的第一个C语言程序</p>
+<p>在输入时请注意：</p>
+<ol>
+<li>所有符号都是英文半角符号, 输入法悬浮窗中实心圆代表全角, 月亮代表半角。一般来说, 中文会使用全角符号, 英文会使用半角符号, 因此你需要将输入法调成英文。</li>
+<li><code>main</code>意为&quot;主要的&quot;, 不是<code>mian</code>; <code>printf</code>意为&quot;格式化打印&quot;，其中&quot;f&quot;是&quot;format&quot;格式化的缩写; <code>return</code>意为&quot;返回&quot;, 不是<code>retrun</code></li>
+<li>代码的<code>printf</code>和<code>return</code>所在的两行前面有一端空白, 这不是敲了4个空格, 而是使用键盘左上角的<code>TAB</code>键输入的。</li>
+</ol>
+<p>输入完成后请使用请在代码区右键，选择<code>对代码重新排版</code>, 如果排版之后与示例代码不一样, 请仔细检查你的代码。</p>
+<p>在输入完成代码之后对代码重新排版是个好习惯，你应该记住保存快捷键(Ctrl+S)和重新排版快捷键(Ctrl+Shift+A), 并且在每次写完代码后按下这两组快捷键。</p>
+<p>输入完后保存，第一次保存需要你选择保存文件夹和程序文件名。请建立一个新的文件夹并命名为你喜欢的名字，用来存储之后课程中所写的程序代码。代码文件的后缀名必须是.c而不是.cpp</p>
+<p>点击运行(F11)，运行你的第一个程序。你会看到一个黑框框，黑框框的第一行显示了<code>Hello World!</code></p>
+<h2 id="hello-world程序的解释">Hello World程序的解释</h2>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+</code></pre>
+<p><code>#</code>是宏语句的开头，宏语句的用处是复制粘贴。<code>include</code>意为导入，作用是将头文件<code>stdio.h</code>粘贴到宏语句所在位置。<code>stdio.h</code>中<code>stdio</code>是<code>Standard input/output</code>标准输入输出的缩写，以<code>.h</code>结尾的文件是头文件，<code>h</code>是<code>head</code>的缩写</p>
+<p>第一行语句的作用是导入标准输入输出库，库中常用函数包括<code>printf</code>格式化输出，<code>scanf</code>格式化输入。</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>{
+    ...
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p><code>int</code>是<code>integer</code>整数类型的缩写。<code>main</code>是主函数。主函数是程序执行开始的地方。</p>
+<p><code>return 0;</code>使主函数结束并返回0，分号表示语句结束，主函数返回0表示程序正常结束。</p>
+<p>以上代码是C语言的固定结构，如果你现在还不理解，是非常正常的。每次写代码可以先写下这一段模板，然后在<code>...</code>的部分填入你自己的代码。</p>
+<pre><code class="language-C"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!\n&quot;</span>);   <span class="hljs-comment">// 打印 Hello World!</span>
+</code></pre>
+<p>这一行命令打印Hello World!，<code>printf</code>是格式化输出，使用双引号包裹的是字符串，字符串内的<code>\n</code>表示换行，是一种转义字符。</p>
+<p>程序中所说的打印显然不是使用打印机将Hello World打印在纸上，而是打印在控制台中。</p>
+<p>控制台，也叫终端或命令提示符，也常被叫作小黑屋，初学者会常常与控制台打交道的。</p>
+<p>双斜线表示按行注释，注释是解释说明程序功能的文本，不会影响程序正常运行。</p>
+<p>双斜线之后的一行文本都是注释。</p>
+<h3 id="尝试更改这段代码">尝试更改这段代码</h3>
+<p>可以更改<code>printf</code>所在行的字符串，改为打印你的名字。</p>
+<p><code>\n</code>表示换行，使用<code>\\</code>打印反斜杠自己，使用<code>\&quot;</code>可以打印一个双引号，<code>\t</code>是水平制表符，相当于键盘的<code>TAB</code>键</p>
+<h2 id="计算机是用来计算的">计算机是用来计算的</h2>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;2+2 = %d\n&quot;</span>, <span class="hljs-number">2</span> + <span class="hljs-number">2</span>);    <span class="hljs-comment">// 2加2得5</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;6-9 = %d\n&quot;</span>, <span class="hljs-number">6</span> - <span class="hljs-number">9</span>);    <span class="hljs-comment">// 6减9得-3</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;3*5 = %d\n&quot;</span>, <span class="hljs-number">3</span> * <span class="hljs-number">5</span>);    <span class="hljs-comment">// 3乘5得15</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;9/3 = %d\n&quot;</span>, <span class="hljs-number">9</span> / <span class="hljs-number">3</span>);    <span class="hljs-comment">// 9除3得3</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;7%3 = %d\n&quot;</span>, <span class="hljs-number">7</span> % <span class="hljs-number">3</span>);    <span class="hljs-comment">// 7除3余1</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>运行以上代码，可以看到黑框框输出:</p>
+<pre><code>2+2 = 4
+6-9 = -3
+3*5 = 15
+9/3 = 3
+7%3 = 1
+</code></pre>
+<p>其中<code>%d</code>是一个占位符，表示格式化输出一个整数，字符串后面的数字依次填入到占位符内。</p>
+<p>例如:</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d %d\n&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>这段程序的输出就是</p>
+<pre><code>1 2 3
+</code></pre>
+<p><code>%d</code>中的d是digit(数字)的缩写。</p>
+<p>请尝试计算不同的式子，满足先乘除后加减的运算顺序，可以用小括号来优先计算。</p>
+<p>尝试计算<code>(1+2)*3</code>和<code>1+2*3</code></p>
+<p>如果除数为零会得到一个程序错误，这会是你遇到的第一个程序错误。</p>
+<p>尝试计算<code>10/3</code>看看结果会是什么吧？</p>
+<p>？？感觉不对，答案怎么是<code>3</code></p>
+<h2 id="数据类型">数据类型</h2>
+<p><code>3</code>和<code>3.0</code>在我们眼里并没有区别，但是在计算机内部保存的方式却是不同的。<code>3</code>先以二进制编码，在以补码的形式保存在计算机中；<code>3.0</code>遵循IEEE 754浮点数标准，以科学计数法的形式保存在计算机中。</p>
+<p>对于数字的处理，常用类型是整型和浮点型，整型用来保存整数，浮点型用来保存小数。</p>
+<p>因此如果想计算<code>10/3</code>的值，可以写成<code>10.0/3.0</code>，并且将<code>%d</code>整型占位符改为<code>%f</code>浮点型占位符。</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;10/3 = %f\n&quot;</span>, <span class="hljs-number">10.0</span> / <span class="hljs-number">3.0</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>程序输出<code>10/3 = 3.333333</code>，可以看到浮点数是有精度限制的，32位浮点数有7位十进制有效数字，64位浮点数有15位十进制有效数字。</p>
+<p>C语言支持的数据类型有基本数据类型和复合数据类型，复合数据类型由基本数据类型组合而成。</p>
+<p>基本数据类型如下：</p>
+<p>(占用内存大小在64位系统x86架构下测得)</p>
+<p>整数类型：</p>
+<ul>
+<li>
+<p>char 字符类型，8比特大小，可以存储一个ASCII表中的字符，也可以被当作整数进行运算</p>
+<p>使用单引号表示一个字符，例如</p>
+<pre><code class="language-C"><span class="hljs-string">&#x27;A&#x27;</span>     <span class="hljs-comment">// 英文字符A    ASCII 65</span>
+<span class="hljs-string">&#x27;a&#x27;</span>     <span class="hljs-comment">// 英文字符a    ASCII 97</span>
+<span class="hljs-string">&#x27;#&#x27;</span>     <span class="hljs-comment">// 井号        ASCII 35</span>
+<span class="hljs-string">&#x27;\\&#x27;</span>    <span class="hljs-comment">// 反斜线表示转义字符，需要两个反斜线才能表示反斜线本身 ASCII 92</span>
+<span class="hljs-string">&#x27;abc&#x27;</span>   <span class="hljs-comment">// 错误，单引号只能表示一个ASCII字符</span>
+<span class="hljs-string">&#x27;文&#x27;</span>    <span class="hljs-comment">// 错误，符号不在ASCII表内</span>
+<span class="hljs-string">&#x27;😅&#x27;</span>    <span class="hljs-comment">// 错误，符号不在ASCII表内</span>
+</code></pre>
+</li>
+<li>
+<p>bool 布尔类型，8比特大小，存储的值要么是真(true)要么是假(false)</p>
+<p>true 被定义为 1</p>
+<p>false 被定义为 0</p>
+<p>参与逻辑运算时，非0代表true</p>
+<p>使用<code>true</code>，<code>false</code>和<code>bool</code>需要导入<code>stdbool.h</code>头文件</p>
+</li>
+<li>
+<p>short 整数类型，16比特大小，可以存储正负号</p>
+</li>
+<li>
+<p>int 整数类型，32比特大小，可以存储正负号</p>
+</li>
+<li>
+<p>long long 长整数类型，64比特大小，可以存储正负号</p>
+</li>
+</ul>
+<p>浮点数类型：</p>
+<ul>
+<li>float 浮点数类型，32比特长度，可以存储带正负号的小数，可以存储7位十进制有效数字</li>
+<li>double 双精度浮点数类型，64比特长度，可以存储带正负号的小数，可以存储15位十进制有效数字</li>
+</ul>
+<p>空类型：</p>
+<ul>
+<li>void 空类型</li>
+</ul>
+<ol>
+<li>表示函数不返回值</li>
+<li>表示函数不接受任何参数</li>
+<li>void * 表示可以指向任何类型的指针</li>
+</ol>
+<h3 id="类型转换">类型转换</h3>
+<p>数字类型之间可以互相转换，一种方式是显式地进行转换，另一种是在运算中隐式地进行转换</p>
+<ol>
+<li>
+<p>显式类型转换</p>
+<p>显式类型转换语法如下：</p>
+<pre><code>(要转换到的类型)需要转换的值
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-C">(<span class="hljs-type">float</span>)<span class="hljs-number">4</span>         <span class="hljs-comment">// 将整数4转化为浮点数类型</span>
+(<span class="hljs-type">float</span>)<span class="hljs-number">3</span> / <span class="hljs-number">4.0</span>   <span class="hljs-comment">// 注意类型转换的优先级高于其他运算</span>
+<span class="hljs-comment">// 上一行先将3转换为浮点数，再除以浮点数4</span>
+(<span class="hljs-type">int</span>)<span class="hljs-number">3.9</span>        <span class="hljs-comment">// 将浮点数3.9转换为整数，舍去小数部分，结果为3</span>
+(<span class="hljs-type">float</span>)<span class="hljs-string">&#x27;A&#x27;</span>      <span class="hljs-comment">// 将字符&#x27;A&#x27;转换为浮点型，结果为&#x27;A&#x27;的ASCII码值的浮点数形式65.0</span>
+(<span class="hljs-type">int</span>)(<span class="hljs-number">12.3</span> + <span class="hljs-number">0.5</span>) <span class="hljs-comment">// 将12.3四舍五入到整数</span>
+(<span class="hljs-type">int</span>)(<span class="hljs-number">12.345</span> * <span class="hljs-number">100.0</span> + <span class="hljs-number">0.5</span>) / <span class="hljs-number">100.0</span> <span class="hljs-comment">// 将12.345四舍五入到百分位</span>
+(<span class="hljs-type">int</span>)(<span class="hljs-number">12345.67</span> / <span class="hljs-number">100.0</span> + <span class="hljs-number">0.5</span>) * <span class="hljs-number">100.0</span> <span class="hljs-comment">// 将12345.67四舍五入到百位</span>
+
+<span class="hljs-comment">// 表示范围大的类型转换为表示范围小的类型可能溢出</span>
+(<span class="hljs-type">char</span>)<span class="hljs-number">114514</span>    <span class="hljs-comment">// 溢出，char可以表示0~255的整数，114514超出了表示范围，结果为114514%256 = 82</span>
+(<span class="hljs-type">int</span>)<span class="hljs-number">2147483648</span> <span class="hljs-comment">// 溢出，2147483648是2的31次方，超出int类型的表示范围，结果为-2147483648</span>
+
+<span class="hljs-comment">// 表示精度高的类型转换为表示精度低的类型会丢失精度</span>
+(<span class="hljs-type">float</span>)<span class="hljs-number">0.12345678901234</span> <span class="hljs-comment">// 丢失精度，0.12345678901234有14位有效数字，float只能表示7位有效数字，会被转换为0.1234567</span>
+</code></pre>
+</li>
+<li>
+<p>隐式类型转换</p>
+<p>隐式类型转换不需要注明所转换的类型，在运算中，表示能力弱的类型和表示能力强的类型运算时，会将表示能力弱的类型自动转换为表示能力强的类型</p>
+<p>整型的表示能力比浮点型弱，因此整型与浮点型运算时，会将整型转换为浮点型</p>
+<p>同为整型或浮点型，占用内存大的表示能力强，例如float与double类型运算时，会将float转换为double</p>
+<p>转换顺序：</p>
+<p>char -&gt; short -&gt; int -&gt; long long -&gt; float -&gt; double</p>
+<p>常用隐式转换例如：</p>
+<pre><code class="language-C"><span class="hljs-number">1.0</span> + <span class="hljs-number">2</span> <span class="hljs-comment">// 结果为3.0</span>
+<span class="hljs-number">1.0</span> / <span class="hljs-number">3</span> <span class="hljs-comment">// 0.3333333</span>
+<span class="hljs-number">5</span> / <span class="hljs-number">3</span> + <span class="hljs-number">2.0</span> <span class="hljs-comment">// 结果为3.0</span>
+<span class="hljs-comment">// 因为5和3均为整数，没有隐式转换，5/3得1后，再与2.0相加，触发隐式转换，结果为3.0</span>
+(<span class="hljs-type">char</span>)(<span class="hljs-string">&#x27;F&#x27;</span> + <span class="hljs-number">32</span>) <span class="hljs-comment">// 将&#x27;F&#x27;变为&#x27;f&#x27;，将大写ASCII字符变为小写</span>
+(<span class="hljs-type">char</span>)(<span class="hljs-string">&#x27;f&#x27;</span> - <span class="hljs-number">32</span>) <span class="hljs-comment">// 将小写ASCII字符f变成大写F</span>
+(<span class="hljs-type">char</span>)((<span class="hljs-string">&#x27;F&#x27;</span> - <span class="hljs-string">&#x27;A&#x27;</span> + <span class="hljs-number">1</span>) % <span class="hljs-number">26</span> + <span class="hljs-string">&#x27;A&#x27;</span>) <span class="hljs-comment">// 将字符F变为字符G，将字符变为其下一个字符(Z变回A)，可以用来实现凯撒密码</span>
+<span class="hljs-comment">// a%b 表示 a除以b的余数</span>
+</code></pre>
+</li>
+</ol>
+<h3 id="printf的占位符">printf的占位符</h3>
+<p>我们已经知道了%d可以输出整数，%f可以输出浮点数，要输出不同类型的不同格式，我们需要深入探索占位符</p>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>介绍</th>
+<th>输出示例</th>
+<th>符号解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%e</td>
+<td>使用科学计算法的浮点数，指数部分的e为小写</td>
+<td>1.234560e+02</td>
+<td>exponent(指数)</td>
+</tr>
+<tr>
+<td>%E</td>
+<td>使用科学计算法的浮点数，指数部分的e为小写</td>
+<td>1.234560E+02</td>
+<td>exponent(指数)</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>浮点数，适用float和double类型</td>
+<td>123.456000</td>
+<td>float(浮点数)</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>十进制整数</td>
+<td>114514</td>
+<td>decimal(十进制)或digit(数字)</td>
+</tr>
+<tr>
+<td>%ld</td>
+<td>长十进制整数，适用long int类型</td>
+<td>12345678901</td>
+<td>long(长)</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>无符号十进制整数</td>
+<td>114514</td>
+<td>unsigned(无符号)</td>
+</tr>
+<tr>
+<td>%lu</td>
+<td>长无符号十进制整数，适用unsigned long int</td>
+<td>12345678901</td>
+<td>unsigned(无符号)</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>八进制整数</td>
+<td>361100</td>
+<td>octal(八进制)</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>十六进制整数</td>
+<td>1e240</td>
+<td>hexadecimal(十六进制)</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>单个字符</td>
+<td>A</td>
+<td>character(字符)</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>字符串</td>
+<td>Hello World!</td>
+<td>string(字符串)</td>
+</tr>
+</tbody>
+</table>
+<p>可以使用<code>%.精度f</code>来指定保留浮点数小数点后多少位(四舍五入到该位数)，例如：</p>
+<pre><code class="language-C"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2f\n&quot;</span>, <span class="hljs-number">12.345</span>)； <span class="hljs-comment">// %.2f表示保留两位小数</span>
+<span class="hljs-comment">// 输出12.35</span>
+</code></pre>
+<h2 id="变量">变量</h2>
+<p>目前我们程序的输出是固定的，要想计算不同数值，只能更改代码中的数值</p>
+<p>要接收用户输入的数值，我们需要标准输入函数<code>scanf</code>，以及在内存中开辟一段空间来存储用户输入的数值。随着程序运行可以动态改变其存储的值的内存空间的代号，我们称其为变量。</p>
+<p>变量是内存空间的代号，通过操作变量，我们实际在操作一段内存空间。</p>
+<p>变量有它的类型，变量类型决定了内存空间的长度和数据的存储方式。</p>
+<p>变量语法如下</p>
+<pre><code class="language-C">变量类型 变量名 = 初始值;           <span class="hljs-comment">// 变量在定义时被赋予了初始值</span>
+变量类型 变量名;                   <span class="hljs-comment">// 变量是未初始化的</span>
+变量类型 变量名<span class="hljs-number">1</span>, 变量名<span class="hljs-number">2</span>, ...;     <span class="hljs-comment">// 可以定义多个同类型的变量</span>
+</code></pre>
+<p>变量必须先定义后使用</p>
+<p>有时候编译器会自动初始化变量(例如将整型初始化为0)，但是不是所有编译器都会这么做</p>
+<p>如果你依赖于自动初始化，那么程序从一台电脑移植到另一台电脑时可能会出现问题</p>
+<p>这时你就会遇到计算机领域的经典问题：</p>
+<p>&quot;这个程序在我的电脑上运行得好好的&quot;</p>
+<p>尝试这个示例程序，它可以将摄氏度转化为华氏度</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+	<span class="hljs-type">float</span> c, f; <span class="hljs-comment">// 定义了两个变量，摄氏度c和华氏度f</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入需要转换的摄氏度：&quot;</span>);
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%f&quot;</span>, &amp;c); <span class="hljs-comment">// 读取一个浮点数，存到变量c中</span>
+	f = (c + <span class="hljs-number">32</span>) * <span class="hljs-number">9</span> / <span class="hljs-number">5</span>; <span class="hljs-comment">// 计算华氏度并赋值到变量f中</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;华氏度为：%.2f°F\n&quot;</span>, f); <span class="hljs-comment">// %.2f可以保留小数点后两位小数</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>输入：</p>
+<p>36.6(回车)</p>
+<p>输出：</p>
+<p>华氏度为：123.48°F</p>
+<h3 id="变量名">变量名</h3>
+<p>变量名有一定的命名规则，称为标识符命令规则，变量名就是标识符。</p>
+<ol>
+<li>标识符由大小写英文字母，数字，下划线组成</li>
+<li>标识符不能以数字开头</li>
+<li>标识符不能与关键字(保留字)相同</li>
+<li>标识符区分大小写。</li>
+</ol>
+<p>关键字(保留字)如下:</p>
+<pre><code>auto double int struct break else long switch case register typedef char extern return union float short unsigned continue for default goto sizeof do if while static enum signed void volatile const inline restrict _Bool _Complex _Imaginary
+</code></pre>
+<p>有一些命名虽然不是保留字，但是也不应该作为变量命名，例如：</p>
+<pre><code>true
+false
+printf
+scanf
+</code></pre>
+<p>其中<code>true false</code>是标准库定义的宏常量，<code>printf scanf</code>是标准库定义的函数。</p>
+<p>符合命名规则的标识符例如：</p>
+<pre><code>i
+j
+res
+counter
+f64
+GenshinImpact
+PI
+__HAL_RCC_GPIOC_CLK_ENABLE
+</code></pre>
+<p>不符合命名规则的标识符例如：</p>
+<pre><code>3d_object
+do
+学生人数
+hello-world
+</code></pre>
+<h3 id="命名规范">命名规范</h3>
+<p>程序代码的编写是一群人与人高强度互动的过程，因此在编程中有一些变量名的非强制的命名规范：</p>
+<ul>
+<li>
+<p>短变量名</p>
+<p>例如<code>i j k</code>，一般作为循环变量使用</p>
+<p>一般来说外层循环用<code>i</code>，内层循环用<code>j</code></p>
+</li>
+<li>
+<p>数学上的变量名</p>
+<p>例如<code>x y z alpha theta</code></p>
+</li>
+<li>
+<p>常用缩写</p>
+<p>例如</p>
+<pre><code>cnt count      计数器
+tmp temporary  临时变量
+msg message    消息
+tx  transmit   发送
+rx  receive    接收
+buf buffer     缓冲区
+pos position   位置
+vec vector     向量
+</code></pre>
+<p>请参考 编程语言中常用的变量命名缩写<a href="https://www.cnblogs.com/xinhaifeihai/p/15966588.html">https://www.cnblogs.com/xinhaifeihai/p/15966588.html</a></p>
+</li>
+<li>
+<p>下划线命名法</p>
+<p>小写单词用下划线隔开，例如：</p>
+<pre><code>student_name
+pid_controller
+objects_3d
+left_motor_speed
+str2int(英文常用2代表to)
+</code></pre>
+</li>
+<li>
+<p>驼峰命名法</p>
+<p>对于变量名，首字母小写，后面单词的首字母大写，其余小写。例如：</p>
+<pre><code>studentName
+pidController
+genshinImpactLaunch
+leftMotorSpeed
+</code></pre>
+</li>
+<li>
+<p>物理量可以带上单位</p>
+<p>例如</p>
+<pre><code>delay_time_ms
+tx_freq_MHz
+download_speed_Mbps
+</code></pre>
+</li>
+</ul>
+<p>我推荐你使用下划线命名法而不是驼峰命名法。</p>
+<p>反面典型命名：</p>
+<ul>
+<li>
+<p>无意义的字母组合，例如：</p>
+<pre><code>abc
+aa
+xxx
+asdfg
+</code></pre>
+</li>
+<li>
+<p>中文拼音或其缩写，例如：</p>
+<pre><code>studentXingMing
+Name_of_XueSheng
+xueshengxingming
+XueShengXingMing(学生姓名还是学生性命？)
+pyszmsx(拼音首字母缩写)
+hujian(胡建)
+</code></pre>
+</li>
+<li>
+<p>其他抽象命名收集</p>
+<pre><code>IIID_Objects(三维对象)
+</code></pre>
+</li>
+<li>
+<p>变量名不能很好地表述变量的功能，例如表示质数平方和的变量，可以命名为<code>prime_sqr_sum</code>，而不是<code>sum</code>。又或者表示电机的最大转速，可以命名为<code>motor_max_speed</code>，而不是<code>vmax</code></p>
+</li>
+</ul>
+<p>不要担心变量名太长导致输入不便，现代编辑器会自动补全变量名。</p>
+<h3 id="变量类型">变量类型</h3>
+<p>变量类型就是变量存储的数据类型，赋值时如果值的类型与变量类型不同，会发生隐式类型转换，例如：</p>
+<pre><code class="language-C"><span class="hljs-type">char</span> a = <span class="hljs-number">65</span>;    <span class="hljs-comment">// 整型转换为字符型</span>
+<span class="hljs-type">float</span> x = <span class="hljs-number">123</span>;  <span class="hljs-comment">// 整型转换为浮点型</span>
+</code></pre>
+<h3 id="变量的赋值">变量的赋值</h3>
+<pre><code class="language-C"><span class="hljs-type">int</span> a = <span class="hljs-number">0</span>;
+a = a + <span class="hljs-number">1</span>; <span class="hljs-comment">// 这段代码可能让人疑惑</span>
+
+<span class="hljs-type">int</span> b = <span class="hljs-number">2</span>, c;
+<span class="hljs-number">2</span> * c = b; <span class="hljs-comment">// 我想将c赋值为1，为什么报错了？</span>
+</code></pre>
+<p><code>a = a + 1</code>可能让人疑惑，在数学上，a是无解的。</p>
+<p>编程中的赋值与数学中的等号虽然符号相同，但是含义却不同</p>
+<p>编程中的赋值，本质是将数据放到某个内存里。赋值语法把等号右边的值叫右值，等号左边的值叫左值。</p>
+<p>赋值就是将右值的数据放入左值的内存中</p>
+<p>因此可以解释<code>a = a + 1</code>先计算<code>a + 1</code>的值，然后将这个新值放到变量a的内存中去</p>
+<p>变量a原先是1，之后变为2</p>
+<p>第二段代码有无效的左值，因为<code>2 * c</code>不能指明一段内存，应该改写成<code>c = b / 2;</code></p>
+<h3 id="变量的作用域与生命周期">变量的作用域与生命周期</h3>
+<p>一对大括号可以定义一个代码段，代码段可以层层嵌套</p>
+<p>变量的生命周期从其被定义开始，到其被销毁结束</p>
+<p>变量的作用域从变量被定义开始，在其代码段结束时结束，例如：</p>
+<pre><code class="language-C">{
+    <span class="hljs-type">int</span> x; <span class="hljs-comment">// 变量x的作用域是外层大括号，此行x的生命周期起始</span>
+    {
+        x = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> y = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 变量y的作用域是内层大括号，此行y的生命周期起始</span>
+        y = y + <span class="hljs-number">2</span>;
+        <span class="hljs-comment">// 在内层代码段结束时，y的生命周期结束</span>
+    }
+    x = <span class="hljs-number">9</span>;
+    <span class="hljs-comment">// 在外层代码段结束时，x的生命周期结束</span>
+}
+</code></pre>
+<p>内层代码段可以访问外层代码段定义的变量</p>
+<p>但是外层代码段不能访问内层代码段定义的变量</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">int</span> x = <span class="hljs-number">1</span>;  <span class="hljs-comment">// x的生命周期开始</span>
+    {
+        <span class="hljs-type">int</span> y = <span class="hljs-number">2</span>;  <span class="hljs-comment">// y的生命周期开始</span>
+        x = <span class="hljs-number">4</span>;
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d\n&quot;</span>, x, y);
+        <span class="hljs-comment">// y的生命周期结束</span>
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d\n&quot;</span>, x, y);    <span class="hljs-comment">// 错误，变量y离开了作用域</span>
+    <span class="hljs-comment">// x的生命周期结束</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>同名变量在嵌套的作用域会产生遮蔽</p>
+<p>内层同名变量会遮蔽外层同名变量，使得在内层作用域时只使用内层同名变量，同时不改变外层同名变量</p>
+<p>例如：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">int</span> x = <span class="hljs-number">1</span>; <span class="hljs-comment">// 外层x开始</span>
+    {
+        <span class="hljs-type">int</span> x = <span class="hljs-number">2</span>;  <span class="hljs-comment">// 内层x开始</span>
+        <span class="hljs-comment">// 当定义内层x时，遮蔽了外层x</span>
+        x = <span class="hljs-number">4</span>;      <span class="hljs-comment">// 在内层代码段中使用内层x进行计算和赋值</span>
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, x);  <span class="hljs-comment">// 输出内层x的值4</span>
+        <span class="hljs-comment">// 内层x结束时，遮蔽被取消</span>
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, x);  <span class="hljs-comment">// 输出外层x的值1</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>定义在大括号外的变量是全局变量，其生命周期与程序的生命周期一样</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> x = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 全局变量x，作用域在程序开始时开始，程序结束时结束</span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    x = <span class="hljs-number">2</span>;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, x);  <span class="hljs-comment">// 输出x的值2</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="标准输入函数">标准输入函数</h2>
+<p><code>scanf</code>为标准输入函数</p>
+<p>scan意为扫描，当用户按下回车键时，输入的字符串将会被送往标准输入流内，等待scanf的读取。</p>
+<p>如果把scanf比作联合收割机，那么标准输入流中的一个个字符就是一排排小麦，等待着被scanf收割。</p>
+<p>如果遇到的字符格式符合字符类型，那么scanf会将它们打包好送到要赋值的变量中，如果字符格式不匹配，scanf会把它们吃掉！</p>
+<p>当scanf遇到回车时会终止扫描</p>
+<pre><code class="language-C"><span class="hljs-type">float</span> f;
+<span class="hljs-type">int</span> d, d1, d2, d3;
+<span class="hljs-type">char</span> c1, c2, c3;
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;d); <span class="hljs-comment">// 读取一个整数，&amp;是取址符，使用scanf输入的变量都需要加取址符</span>
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d %d&quot;</span>, &amp;d1, &amp;d2, &amp;d3); <span class="hljs-comment">// 读入用空格分隔的三个整数，依次放入变量d1,d2,d3中</span>
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d,%d,%d&quot;</span>, &amp;d1, &amp;d2, &amp;d3); <span class="hljs-comment">// 读入用逗号分隔的三个整数，依次放入变量d1,d2,d3中</span>
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%f&quot;</span>, &amp;f); <span class="hljs-comment">// 读取一个浮点数</span>
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c%c%c&quot;</span>, &amp;c1, &amp;c2, &amp;c3); <span class="hljs-comment">// 读入三个字符，依次放入变量c1,c2,c3中</span>
+<span class="hljs-comment">// 输入Hello，c1为字符H，c2为字符e，c3为字符l，后面的字符不会读取</span>
+</code></pre>
+<h2 id="c语言的基本语法">C语言的基本语法</h2>
+<p>C语言有几种语法规则，我们目前遇到的语法总结如下：</p>
+<ol>
+<li>
+<p>宏定义语句</p>
+<p>宏定义语法以<code>#</code>井号开头，常见的宏语句有</p>
+<ul>
+<li><code>#include &lt;头文件名.h&gt;</code> 用来导入头文件</li>
+<li><code>#define</code> 用来定义宏常量（之后会讲）</li>
+<li><code>#ifdef</code>或<code>#ifndef</code>与<code>#elif</code>和<code>#end</code>联合使用，表示条件宏语句</li>
+</ul>
+<p>宏语句不需要以分号结尾，其他大部分语句都需要以分号结尾</p>
+</li>
+<li>
+<p>函数的实现语句</p>
+<p>函数的实现语句语法为：</p>
+<pre><code class="language-C">返回值类型 函数名(参数列表) {
+    许多语句
+}
+</code></pre>
+<p>函数名符合标识符的命名规则</p>
+<p>参数类型和参数名可以定义一个参数</p>
+<p>多个参数用逗号分隔组成参数列表</p>
+<p>参数列表可以为空，表示不接受参数</p>
+<p>例如</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span> {
+    <span class="hljs-comment">// argc和argv用于接收命令行参数</span>
+    <span class="hljs-comment">// 我们的今后的程序都不需要接收命令行参数</span>
+    ...
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>函数的实现语法不需要以分号结尾，但其大括号中的语句可能需要</p>
+<p>不能在函数实现的大括号里写宏定义(但可以写条件宏)和函数实现</p>
+</li>
+<li>
+<p>变量的定义语句</p>
+<p>变量的定义语句语法为：</p>
+<pre><code class="language-C">变量类型 变量列表;
+</code></pre>
+<p>几种常见变量定义语句</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> a, b, c;
+<span class="hljs-type">int</span> a = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 定义的同时赋初始值</span>
+</code></pre>
+<p>变量的定义可以写在大括号(代码块)内，变量定义在不同的大括号内决定了变量的作用范围(作用域)</p>
+</li>
+<li>
+<p>其他语句</p>
+<p>(不严谨地说)值和值的运算构成了表达式，例如<code>1</code>，<code>1 + 1</code>, <code>sqrt(1)</code>，<code>a + b</code>都是表达式</p>
+<ul>
+<li>
+<p>变量赋值语句</p>
+<p><code>变量名 = 表达式;</code>，例如：</p>
+<p><code>a = 1;</code>或<code>a = b = c = sqrt(4);</code></p>
+</li>
+<li>
+<p>函数调用语句
+<code>表达式;</code>，例如：</p>
+<p><code>printf(&quot;Hello\n&quot;);</code>，<code>scanf(&quot;%d&quot;, &amp;a);</code>，<code>1 + 1;</code></p>
+</li>
+<li>
+<p>控制语句</p>
+<p>之后会介绍<code>while</code>，<code>for</code>，<code>if else</code>，<code>switch case</code>，<code>return</code>等语句的语法</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="末尾的话">末尾的话</h2>
+<p><code>auto</code>、<code>register</code>、<code>static</code>、<code>const</code>、<code>volatile</code>和<code>extern</code>是变量修饰符</p>
+<p><code>auto</code>从不使用，不讲</p>
+<p><code>register</code>可以将变量存到寄存器里面，相信优化器的智慧，不需要使用<code>register</code></p>
+<p><code>static</code>用于声明静态变量或函数，不用<code>static</code>也可以完成程序任务，不讲</p>
+<p><code>const</code>在指针章节讲，几乎只用于修饰指针</p>
+<p><code>volatile</code>在调试章节讲</p>
+<p><code>extern</code>在多文件章节讲</p>
+
+            
+            
+        </body>
+        </html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x51fd;&#x6570;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h2 id="函数">函数</h2>
+<p>函数是C语言实现代码复用的基本单元，C语言的函数可以有多个输入，一个输出</p>
+<p>最简单的函数既没有输入也没有输出</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">greet</span><span class="hljs-params">()</span> {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello!\n&quot;</span>);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    greet();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>void表示没有输出(返回值)，greet后面的小括号里为空，表示函数没有输入</p>
+<p>一般来说，一个函数既有输入也有输出，例如写一个计算向量模长的函数</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span></span>
+
+<span class="hljs-comment">// 函数在使用之前必须先定义</span>
+<span class="hljs-comment">// 定义了函数length，输入两个参数均为浮点型，分别叫vec_x,，vec_y</span>
+<span class="hljs-comment">// 输出浮点型</span>
+<span class="hljs-type">float</span> <span class="hljs-title function_">length</span><span class="hljs-params">(<span class="hljs-type">float</span> vec_x, <span class="hljs-type">float</span> vec_y)</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(vec_x * vec_x + vec_y * vec_y); 
+    <span class="hljs-comment">// 使用return来输出结果并结束函数</span>
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">float</span> a, b, c;
+    a = <span class="hljs-number">3</span>;
+    b = <span class="hljs-number">4</span>;
+    c = length(a, b);   <span class="hljs-comment">// 变量c被复制为length函数的返回值</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;勾%d股%d弦%d\n&quot;</span>, (<span class="hljs-type">int</span>)a, (<span class="hljs-type">int</span>)b, (<span class="hljs-type">int</span>)c);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在length函数中，vec_x和vec_y被称为形式参数，a和b被称为实际参数</p>
+<p>在调用函数时，会将实际参数<strong>按序</strong>赋值给形式参数</p>
+<h3 id="画函数图像">画函数图像</h3>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdbool.h&gt;</span></span>
+
+<span class="hljs-comment">// x轴方向的字符数</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> X_CHARS 40</span>
+<span class="hljs-comment">// y轴方向的字符数</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> Y_CHARS 40</span>
+<span class="hljs-comment">// x轴缩放倍率的倒数</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> X_SCALE_INV (2 * M_PI)</span>
+<span class="hljs-comment">// y轴缩放倍率的倒数</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> Y_SCALE_INV (4)</span>
+<span class="hljs-comment">// 容许误差半径</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> EPSILON (6 / (float)Y_CHARS / Y_SCALE_INV)</span>
+
+<span class="hljs-type">bool</span> <span class="hljs-title function_">in_radius</span><span class="hljs-params">(<span class="hljs-type">float</span> x, <span class="hljs-type">float</span> y)</span> <span class="hljs-comment">// 两个浮点数`差不多`相等</span>
+{
+    <span class="hljs-keyword">return</span> fabsf(x - y) &lt;= EPSILON;
+}
+
+<span class="hljs-comment">// 圆方程</span>
+<span class="hljs-type">float</span> <span class="hljs-title function_">circle</span><span class="hljs-params">(<span class="hljs-type">float</span> x, <span class="hljs-type">float</span> y)</span> <span class="hljs-comment">// x^2 + y^2 = 1 变换为 F(x,y) = x^2 + y^2 - 1</span>
+{
+    <span class="hljs-keyword">return</span> sqrtf(powf(x, <span class="hljs-number">2</span>) + powf(y, <span class="hljs-number">2</span>)) - <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-comment">// 正弦函数方程</span>
+<span class="hljs-type">float</span> <span class="hljs-title function_">wave</span><span class="hljs-params">(<span class="hljs-type">float</span> x, <span class="hljs-type">float</span> y)</span> <span class="hljs-comment">// y = sin(x) 变换为 F(x,y) = sin(x) - y</span>
+{
+    <span class="hljs-keyword">return</span> sinf(x) - y;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">float</span> x, y;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; Y_CHARS + <span class="hljs-number">1</span>; i++)
+    {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; X_CHARS * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>; j++)
+        {
+            x = (j - X_CHARS) / (<span class="hljs-type">float</span>)(Y_CHARS * <span class="hljs-number">2</span>) * X_SCALE_INV;
+            y = -(i - Y_CHARS / <span class="hljs-number">2</span>) / (<span class="hljs-type">float</span>)Y_CHARS * Y_SCALE_INV;
+            <span class="hljs-keyword">if</span> (in_radius(wave(x, y), <span class="hljs-number">0</span>))
+            {
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*&quot;</span>);
+            }
+            <span class="hljs-keyword">else</span>
+            {
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; &quot;</span>);
+            }
+        }
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>运行这段代码，黑框框会输出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y = \sin(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span> 的图像，这段代码实现了绘制函数图像的功能</p>
+<p>要理解这段代码，你需要了解IPO(输入 处理 输出)的程序设计流程</p>
+<p>要完成绘制函数图像的任务，输入是要绘制的函数，输出是字符绘制成的图像</p>
+<p>流程图如下：</p>
+<pre><code>要绘制的函数 --(1)--&gt; 返回布尔值的函数 ----|
+                                       |--（3）--&gt;打印字符到屏幕上
+绘制函数的范围 --(2)------------------ --|
+</code></pre>
+<ol>
+<li>输入要绘制的函数<code>z = F(x, y)</code>，使用<code>z = EPSILON</code>和<code>z = -EPSLION</code>平面截得两平面之间的函数曲面，并将其投影到xOy平面上，如果某点(x, y)在函数投影区域内，则返回true，否则返回false，在代码中表现为<code>in_radius(wave(x, y), 0)</code></li>
+<li>使用缩放平移变换，将(j, i)格点(0 &lt;= i, j/2 &lt; 40)变换为(x, y)格点(x in (-S_x, S_x), y in (-S_y, S_y))</li>
+</ol>
+<pre><code class="language-C">x = (j - X_CHARS) / (<span class="hljs-type">float</span>)(Y_CHARS * <span class="hljs-number">2</span>) * X_SCALE_INV;
+y = -(i - Y_CHARS / <span class="hljs-number">2</span>) / (<span class="hljs-type">float</span>)Y_CHARS * Y_SCALE_INV;
+</code></pre>
+<ol start="3">
+<li>遍历所有格点，将变换后的格点覆盖在输出布尔值的函数上，如果结果为true，就打印<code>*</code>，否则打印空格</li>
+</ol>
+<pre><code class="language-C"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; Y_CHARS + <span class="hljs-number">1</span>; i++)
+{
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; X_CHARS * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>; j++)
+    {
+        x = (j - X_CHARS) / (<span class="hljs-type">float</span>)(Y_CHARS * <span class="hljs-number">2</span>) * X_SCALE_INV;
+        y = -(i - Y_CHARS / <span class="hljs-number">2</span>) / (<span class="hljs-type">float</span>)Y_CHARS * Y_SCALE_INV;
+        <span class="hljs-keyword">if</span> (in_radius(wave(x, y), <span class="hljs-number">0</span>))
+        {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*&quot;</span>);
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; &quot;</span>);
+        }
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+}
+</code></pre>
+<p>建议使用GeoGebra等工具绘制三维函数图像帮助理解</p>
+<ul>
+<li>
+<p>尝试将输出图像换成圆</p>
+</li>
+<li>
+<p>尝试改变宏定义的参数，了解它们的功能</p>
+</li>
+<li>
+<p>尝试绘制 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup><mo>=</mo><msup><mi>x</mi><mn>3</mn></msup><mo>−</mo><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y^2 = x^3 - x + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 的函数图像（缩放倍率设置为4，加大线宽）</p>
+</li>
+</ul>
+<p>注意到了吗？在命名宏常量时使用了全大写英文加下划线，一般来说，用全大写命名常量</p>
+<h3 id="调试">调试</h3>
+<p>搞不懂程序为什么能运行？搞不懂程序为什么不能运行？你需要调试！</p>
+<p>一只小飞蛾钻进了计算机电路里，导致系统无法工作，于是，bug一词成了电脑系统程序的专业术语，形容那些系统中的缺陷或问题。</p>
+<p><code>debug</code>直译为去虫，意译为调试</p>
+<p>将<code>编译器配置方案</code>调整为<code>debug</code>模式，<code>编译/链接选项</code>中的<code>代码生成</code>中的<code>优化级别</code>改成<code>Debug (-Og)</code></p>
+<p>以绘制函数图像的程序为例，在内层循环代码块的第一行处右键选择<code>切换断点</code>，你会看到行号左边有一个红点</p>
+<p>点击虫子形状的按钮，代码会运行到断点处停下，找到下方的调试栏，选择局部变量一栏，可以看到所有局部变量和其对应的值</p>
+<p>蓝色箭头是程序指针，标识着程序运行到哪一行。注意：蓝色指针指向的一行还没有运行完成</p>
+<p>在虫子按钮右边的几个按钮可以控制程序继续执行</p>
+<ul>
+<li>
+<p><code>单步跨过</code>，运行一行，如果有函数调用，不进入函数</p>
+</li>
+<li>
+<p><code>单步进入</code>，运行一行，如果有函数调用，进入函数内部(如果函数是标准库中的，你可能会面对汇编代码)</p>
+</li>
+<li>
+<p><code>单步跳出</code>，跳出当前执行的函数，返回调用函数的一行</p>
+</li>
+<li>
+<p><code>调用栈</code>记录了函数之间的调用关系</p>
+</li>
+</ul>
+<p>调用栈的最底下一定是<code>main</code>函数，在调用<code>wave</code>函数时，<code>wave</code>函数会在<code>main</code>函数上方，表示<code>main</code>调用了<code>wave</code></p>
+<h3 id="递归">递归</h3>
+<p>函数可以调用自身，这称为递归。在处理某些问题时，递归是一种强大的工具，例如计算阶乘或斐波那契数列。</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ERROR (-1)</span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">factorial_inner</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>
+{
+    <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>)     <span class="hljs-comment">// 在此行打断点</span>
+    {
+        <span class="hljs-comment">// 基本条件</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">// 递归条件</span>
+        <span class="hljs-keyword">return</span> n * factorial_inner(n - <span class="hljs-number">1</span>);
+    }
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">factorial</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>
+{
+    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-keyword">return</span> ERROR;
+    }
+    <span class="hljs-keyword">return</span> factorial_inner(n);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">int</span> num = <span class="hljs-number">5</span>;
+    <span class="hljs-type">int</span> result;
+
+    result = factorial(num);
+
+    <span class="hljs-keyword">if</span> (result == ERROR)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;阶乘的参数必须大于等于零\n&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d 的阶乘是: %d\n&quot;</span>, num, result);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这个示例中，<code>factorial_inner</code>函数通过递归调用自身来计算给定数字的阶乘。</p>
+<p>可以看到，通过使用<code>factorial</code>函数包裹<code>factorial_inner</code>，实现了错误处理</p>
+<p>你可以尝试直接调用<code>factorial_inner</code>函数，并传递给它一个负的参数，看看会发生什么</p>
+<p>另一种写法是改写<code>factorial</code>的函数签名，让它只接收正的参数</p>
+<pre><code class="language-C"><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> <span class="hljs-title function_">factorial</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> n)</span>
+</code></pre>
+<p>在示例代码的注释处打断点，并启动调试，关注调用栈一栏</p>
+<p>调用栈的最底层是<code>main</code>函数，倒数第一层是<code>factorial</code>，倒数第二层是<code>factorial_inner</code>函数</p>
+<p>点击<code>继续执行</code>，可以看到调用栈中又压入了一个<code>factorial_inner</code>函数</p>
+<p>关注<code>局部变量</code>栏，可以看到<code>n = 4</code></p>
+<p>多次点击<code>继续执行</code>，可以看到 n 从 5 到 0</p>
+<p>当<code>n = 0</code>时，关注调用栈，点击<code>单步跨过</code></p>
+<p>可见调用栈中的函数被一层层弹出，直到最终返回到<code>main</code>函数</p>
+<p>函数调用过程表示如下</p>
+<pre><code class="language-C"><span class="hljs-number">5</span>!
+<span class="hljs-number">5</span> * <span class="hljs-number">4</span>!
+<span class="hljs-number">5</span> * <span class="hljs-number">4</span> * <span class="hljs-number">3</span>!
+<span class="hljs-number">5</span> * <span class="hljs-number">4</span> * <span class="hljs-number">3</span> * <span class="hljs-number">2</span>!
+<span class="hljs-number">5</span> * <span class="hljs-number">4</span> * <span class="hljs-number">3</span> * <span class="hljs-number">2</span> * <span class="hljs-number">1</span>!
+<span class="hljs-number">5</span> * <span class="hljs-number">4</span> * <span class="hljs-number">3</span> * <span class="hljs-number">2</span> * <span class="hljs-number">1</span> * <span class="hljs-number">0</span>!  <span class="hljs-comment">// 遇到基本条件，开始返回</span>
+<span class="hljs-number">5</span> * <span class="hljs-number">4</span> * <span class="hljs-number">3</span> * <span class="hljs-number">2</span> * <span class="hljs-number">1</span> * <span class="hljs-number">1</span>
+<span class="hljs-number">5</span> * <span class="hljs-number">4</span> * <span class="hljs-number">3</span> * <span class="hljs-number">2</span> * <span class="hljs-number">1</span>
+<span class="hljs-number">5</span> * <span class="hljs-number">4</span> * <span class="hljs-number">3</span> * <span class="hljs-number">2</span>
+<span class="hljs-number">5</span> * <span class="hljs-number">4</span> * <span class="hljs-number">6</span>
+<span class="hljs-number">5</span> * <span class="hljs-number">24</span>
+<span class="hljs-number">120</span>
+</code></pre>
+<h2 id="软件工程简述">软件工程简述</h2>
+<p>软件开发的工作量不能简单地使用 <code>人数 × 劳动时间</code> 来衡量，编写软件就像生孩子，一个孕妇生一个孩子需要十个月，不代表两个孕妇生一个孩子只需五个月。</p>
+<p>实际上，软件开发的时间在人数恰当时最短，这是因为，软件开发是需要高度沟通交流的工作。</p>
+<p>将人想象为一个节点，两个人之间存在沟通就在节点之间连一条线，人数与开发效率正相关，沟通路径与开发效率负相关，显然，连线数量比节点数量增长得更快。</p>
+<p>这里的节点也可以是程序中的不同模块，也可以是硬件中的不同部件，连线则表示它们之间存在联系。</p>
+<p>随着项目规模的扩大，沟通的复杂性成倍增加。</p>
+<p>比如，当团队由2个人增加到3个人时，沟通路径从1条增加到3条。而当团队人数增加到4人时，沟通路径变成了6条。</p>
+<p>这个规律可以通过组合数学中的公式来计算，沟通路径的数量为 <code>n(n-1)/2</code>，其中 <code>n</code> 是团队人数。显然，随着团队人数的增加，沟通的负担会迅速增加。</p>
+<p>为了应对这种复杂性，软件工程强调模块化设计。通过将系统划分为若干独立的模块，可以减少模块之间的耦合，从而降低沟通的复杂度</p>
+<p>每个模块可以独立开发、测试和维护，而模块之间的接口则需要精心设计和文档化，以确保模块能够无缝集成。</p>
+<p>为了有效管理软件开发过程，开发团队通常会使用各种工具和实践。这些工具和实践包括：</p>
+<ul>
+<li><strong>版本控制系统</strong>：如Git，用于管理代码的版本和变更历史。</li>
+<li><strong>代码审查</strong>：通过同行评审提高代码质量和发现潜在问题。</li>
+<li><strong>测试驱动开发</strong>：通过编写测试用例来驱动代码的设计和开发。</li>
+</ul>
+<h3 id="通过dxygon为函数编写文档">通过Dxygon为函数编写文档</h3>
+<p>Doxygen 是软件开发中广泛使用的文档生成器工具。它可以通过特定格式的注释自动生成文档</p>
+<pre><code class="language-C"><span class="hljs-comment">/// @brief 计算向量的模长</span>
+<span class="hljs-comment">/// @param vec_x 向量在x轴的投影</span>
+<span class="hljs-comment">/// @param vec_y 向量在y轴的投影</span>
+<span class="hljs-comment">/// @return 向量的模长</span>
+<span class="hljs-type">float</span> <span class="hljs-title function_">length</span><span class="hljs-params">(<span class="hljs-type">float</span> vec_x, <span class="hljs-type">float</span> vec_y)</span>
+{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(vec_x * vec_x + vec_y * vec_y);
+}
+
+<span class="hljs-comment">/// @brief 计算阶乘</span>
+<span class="hljs-comment">/// @param n 阶乘参数</span>
+<span class="hljs-comment">/// @return 当n&lt;0时，返回ERROR，否则返回n的阶乘</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">factorial</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>
+{
+    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-keyword">return</span> ERROR;
+    }
+    <span class="hljs-keyword">return</span> factorial_inner(n);
+}
+</code></pre>
+<p>可以看到 Doxygen 注释以三个斜线开头，使用@开头的名字来作为栏目名</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@brief</td>
+<td>简述函数功能</td>
+</tr>
+<tr>
+<td>@param</td>
+<td>参数解释</td>
+</tr>
+<tr>
+<td>@return</td>
+<td>返回值解释</td>
+</tr>
+</tbody>
+</table>
+<p>通过上面两个小例子，我相信你已经掌握了 Doxygen 的基本使用</p>
+<h3 id="编写单元测试">编写单元测试</h3>
+<p>单元测试是最好的函数使用说明</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;assert.h&gt;</span>     <span class="hljs-comment">// 断言库</span></span>
+
+<span class="hljs-comment">// 被测试的函数</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>
+{
+    <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-comment">// 测试函数</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">test_add</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-comment">// 使用assert宏来验证函数的正确性</span>
+    <span class="hljs-comment">// 当assert的参数为true时，什么都不做</span>
+    <span class="hljs-comment">// 当assert的参数为false时，报错并结束程序</span>
+    assert(add(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) == <span class="hljs-number">5</span>);
+    assert(add(<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>) == <span class="hljs-number">0</span>);
+    assert(add(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>) == <span class="hljs-number">0</span>);
+    assert(add(<span class="hljs-number">-2</span>, <span class="hljs-number">-3</span>) == <span class="hljs-number">-5</span>);
+    assert(add(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>) == <span class="hljs-number">300</span>);
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;所有测试通过！\n&quot;</span>);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-comment">// 调用测试函数</span>
+    test_add();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="末尾的话">末尾的话</h3>
+<p>绘制函数图像的程序是初学者首次接触到的较长的程序，同时，它也实现了一个较为复杂的功能</p>
+<p>如果未来要参加比赛的话，你可能需要与其他人组队完成一个比较复杂的项目，这就需要你写出逻辑清晰、文档完备的代码</p>
+<p>计算机科学中，通过封装和抽象来降低复杂性，通过对底层实现的封装，编程人员只需要关心与解决问题直接相关的层级</p>
+<p>函数是实现封装和抽象的一种手段，通过合理地使用函数来将一个程序划分为不同模块、不同层级来减少复杂性</p>
+<p>函数语法可以很快掌握，但是如何使用函数需要一段时间的实践才能掌握</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>
