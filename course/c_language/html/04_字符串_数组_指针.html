@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x5b57;&#x7b26;&#x4e32; &#x6570;&#x7ec4; &#x6307;&#x9488;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h2 id="字符串-数组-指针">字符串 数组 指针</h2>
+<h3 id="内存模型">内存模型</h3>
+<p>内存是可读写的储存部件，就像仓库货架有编号一样，内存也有地址</p>
+<p>内存以一个字节为单位读写和分配地址</p>
+<p>数字电路中，一条线要么是高电平，要么是低电平</p>
+<p>内存有三类线引出，分别为：</p>
+<p>地址线束：表示地址的多条线</p>
+<p>数据线束：读写数据的多条线</p>
+<p>读写控制线：控制是否读写的一条线</p>
+<p>例如，要读出地址233处的数据，向地址线束输入233，将读写控制线设为读模式，等待时钟，即可从数据线束读出233处的数据</p>
+<p>要向地址114写入数据514，向地址线束输入114，向数据线束输入514，将读写控制线设为写模式，等待时钟，即可在内存中写入数据</p>
+<p>缓存是紧挨着CPU的存储部件，特点是容量小速度快</p>
+<p>现代计算机通过缓存<strong>成块地</strong>复制内存的一小部分，从而加速访问</p>
+<p>如果访问的数据在缓存中，我们称为缓存命中，缓存命中可以显著提高数据访问的速度</p>
+<p>如果一组数据是同类数据，比如一个班级内学生的成绩或一个城市中的房价和房屋面积，那么让其<strong>相邻存储</strong>会提高程序的运行速度，因为提高了缓存命中的概率</p>
+<p>如果你对地址相连的内存进行操作，例如复制一段连续的内存，相对于不连续的内存，速度会显著提高，因为有专门的CPU指令对这个操作进行硬件层面的优化</p>
+<h3 id="数组">数组</h3>
+<p>我们使用数组将<strong>同一类型</strong>的一组数据存放在<strong>连续</strong>的内存中</p>
+<p>我们使用以下方式初始化数组：</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> a[<span class="hljs-number">10</span>];  <span class="hljs-comment">// 初始化一个名叫a的数组，长度为10，其中的每个元素都是整型</span>
+<span class="hljs-type">int</span> b[<span class="hljs-number">10</span>] = {<span class="hljs-number">0</span>};    <span class="hljs-comment">// 初始化数组时同时赋值为全零</span>
+<span class="hljs-type">int</span> c[] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};   <span class="hljs-comment">// 初始化数组并赋值，长度为3，其中c的第一个元素为1，以此类推</span>
+</code></pre>
+<p>通过方括号，我们可以索引数组的一个元素</p>
+<p>索引的本质是内存偏移，因此数组a第一个元素索引为0，第二个元素索引为1，以此类推</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> c[<span class="hljs-number">3</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, c[<span class="hljs-number">2</span>]);   <span class="hljs-comment">// 数组c的第三个元素，输出3</span>
+</code></pre>
+<p>数组所占字节数为数组元素个数乘元素类型所占字节数</p>
+<p>例如<code>int a[3]</code>占3(元素个数)*4(int所占字节数)=12字节</p>
+<p>以下程序可以计算十个数的平均数</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">double</span> nums[<span class="hljs-number">10</span>];
+    <span class="hljs-type">double</span> sum = <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">// 读入十个数</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++)
+    {
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lf&quot;</span>, &amp;nums[i]); <span class="hljs-comment">// 输入可以用空格或回车分隔</span>
+    }
+
+    <span class="hljs-comment">// 求十个数的和</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++)
+    {
+        sum += nums[i];
+    }
+
+    <span class="hljs-comment">// 计算平均数</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;avg: %f\n&quot;</span>, sum / <span class="hljs-number">10</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>如果数组索引超出了数组长度，例如访问长度为10的数组的第11个元素，这会导致数组访问越界</p>
+<p>数组越界时，可能修改其他变量，也可能导致段错误(Segmentation Fault)</p>
+<h3 id="指针">指针</h3>
+<p>指针存储了数据在内存中的地址</p>
+<p><code>&amp;</code>称为取址运算符</p>
+<p>我们可以使用<code>&amp;</code>符号获取变量的起始地址，例如：</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> a = <span class="hljs-number">0</span>;
+&amp;a; <span class="hljs-comment">// a占4个字节，&amp;a会得到4个字节中最前面的字节的地址</span>
+<span class="hljs-comment">// 如果整型变量a占内存的地址为</span>
+<span class="hljs-comment">// 0x12 0x13 0x14 0x15</span>
+<span class="hljs-comment">// 那么&amp;a会得到0x12</span>
+</code></pre>
+<p><code>*</code>称为取值运算符，是<code>&amp;</code>的逆运算</p>
+<pre><code class="language-C"><span class="hljs-type">int</span> a[] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};
+*(a+<span class="hljs-number">1</span>);  <span class="hljs-comment">// 等同于a[1]</span>
+*&amp;*&amp;*&amp;*&amp;*&amp;a[<span class="hljs-number">1</span>];    <span class="hljs-comment">// 等同于a[1]</span>
+</code></pre>
+<p>我们可以使用指针修改变量</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">int</span> a = <span class="hljs-number">1</span>;
+    <span class="hljs-type">int</span> *p = &amp;a; <span class="hljs-comment">// p存储了a的地址，即p指向a</span>
+    <span class="hljs-comment">// int * 表示指向整型的指针</span>
+
+    *p = <span class="hljs-number">100</span>; <span class="hljs-comment">// 因为p指向了a，所以*p和a表示同一变量</span>
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a); <span class="hljs-comment">// 输出100</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%0llx\n&quot;</span>, (<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span>)p);
+    <span class="hljs-comment">// 十六进制形式输出a的地址</span>
+    <span class="hljs-comment">// 随机的十六进制数</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>函数可以以指针作为参数，从而修改变量的值</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">set_100</span><span class="hljs-params">(<span class="hljs-type">int</span> *x)</span>
+{
+    <span class="hljs-comment">// 函数调用时，复制了指针</span>
+    <span class="hljs-comment">// 指针指向的地址相同，因此操作的是同一个变量</span>
+    *x = <span class="hljs-number">100</span>;
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">set_100_useless</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span>
+{
+    <span class="hljs-comment">// 不使用指针无法修改实际参数的值</span>
+    <span class="hljs-comment">// 函数调用时，把实际参数复制到形式参数</span>
+    <span class="hljs-comment">// 因此修改形式参数不影响实际参数</span>
+    x = <span class="hljs-number">100</span>;
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">swap_int</span><span class="hljs-params">(<span class="hljs-type">int</span> *x, <span class="hljs-type">int</span> *y)</span>
+{
+    <span class="hljs-type">int</span> tmp;
+    tmp = *x;
+    *x = *y;
+    *y = tmp;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">int</span> x, y;
+    x = <span class="hljs-number">1</span>;
+    y = <span class="hljs-number">2</span>;
+
+    set_100(&amp;x);                   <span class="hljs-comment">// 将x设置为100</span>
+    set_100_useless(y);            <span class="hljs-comment">// 没用，y的值依然是2</span>
+    swap_int(&amp;x, &amp;y);              <span class="hljs-comment">// 交换x和y的值</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;x: %d y: %d\n&quot;</span>, x, y); <span class="hljs-comment">// x: 2 y: 100</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>可以将数组作为函数的参数，其效果等同于指针</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-comment">/// @brief 计算数组的平均值</span>
+<span class="hljs-comment">/// @param arr 数组</span>
+<span class="hljs-comment">/// @param n 数组长度</span>
+<span class="hljs-comment">/// @return 平均值</span>
+<span class="hljs-type">double</span> <span class="hljs-title function_">avg_pointer</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">double</span> * <span class="hljs-type">const</span> arr, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> n)</span>
+{
+    <span class="hljs-type">double</span> sum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)
+    {
+        sum += arr[i];
+    }
+    <span class="hljs-keyword">return</span> sum / n;
+}
+
+<span class="hljs-comment">/// @brief 计算数组的平均值</span>
+<span class="hljs-comment">/// @param arr 数组</span>
+<span class="hljs-comment">/// @param n 数组长度</span>
+<span class="hljs-comment">/// @return 平均值</span>
+<span class="hljs-type">double</span> <span class="hljs-title function_">avg_array</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">double</span> arr[], <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> n)</span>
+{
+    <span class="hljs-type">double</span> sum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)
+    {
+        sum += arr[i];
+    }
+    <span class="hljs-keyword">return</span> sum / n;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">double</span> arr[<span class="hljs-number">10</span>];
+
+    <span class="hljs-comment">// 将arr赋值为1,2...10</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++)
+    {
+        arr[i] = i + <span class="hljs-number">1</span>;
+    }
+    
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;avg_pointer: %lf\n&quot;</span>, avg_pointer(arr, <span class="hljs-number">10</span>));
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;avg_array: %lf\n&quot;</span>, avg_array(arr, <span class="hljs-number">10</span>));
+    <span class="hljs-comment">// 输出均为5.5</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>其中的<code>const double * const arr</code>指向数组的首地址，<code>const</code>关键字意为常量，即不可更改的</p>
+<p>前一个<code>const</code>表示指针指向的内容不可变，后一个<code>const</code>表示指针指向的地址不可变</p>
+<p>因此<code>const double * const arr</code>表示以只读的方式访问arr</p>
+<p>同理，<code>const double arr[]</code>也表示以只读的方式访问arr</p>
+<h3 id="字符串">字符串</h3>
+<p>之前我们多次使用过字符串，这次我们将深入了解字符串的存储和处理</p>
+<p>字符串中的每一个ASCII字符(7bit)占用一个字节(8bit)，前面用零补齐</p>
+<p>字符串中的字符在内存中连续地排布，并以字符<code>\0</code>结尾</p>
+<p>例如字符串<code>ABC</code>的十六进制表示如下：</p>
+<pre><code>0x41 0x42 0x43 0x00
+</code></pre>
+<p>分别对应：</p>
+<pre><code>A B C \0
+</code></pre>
+<p>使用<code>string.h</code>库，我们可以方便地对字符串进行处理</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">char</span> hello[<span class="hljs-number">6</span>] = <span class="hljs-string">&quot;Hello&quot;</span>;
+    <span class="hljs-type">char</span> world[<span class="hljs-number">7</span>] = <span class="hljs-string">&quot; World&quot;</span>;
+
+    <span class="hljs-type">char</span> hello_world[<span class="hljs-number">12</span>]; <span class="hljs-comment">// 6 + 7 - 1 少了一个\0</span>
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hello字符串的长度: %ld\n&quot;</span>, <span class="hljs-built_in">strlen</span>(hello)); <span class="hljs-comment">// 输出 5</span>
+    <span class="hljs-built_in">strcpy</span>(hello_world, hello);                        <span class="hljs-comment">// 将hello字符串复制到hello_world字符串中</span>
+    <span class="hljs-built_in">strcat</span>(hello_world, world);                        <span class="hljs-comment">// 将world字符串拼接到hello_world字符串末尾</span>
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, hello_world); <span class="hljs-comment">// 输出Hello World</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>以下函数实现了将一个字符串插入到另一个字符串中的功能</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdbool.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;assert.h&gt;</span></span>
+
+<span class="hljs-comment">/// @brief 将一个字符串插入到另一个字符串中</span>
+<span class="hljs-comment">/// @param str 结果字符串</span>
+<span class="hljs-comment">/// @param insert 插入的字符串</span>
+<span class="hljs-comment">/// @param position 插入的起始索引</span>
+<span class="hljs-comment">/// @param str_size_max 结果字符串的长度</span>
+<span class="hljs-comment">/// @return 是否成功插入</span>
+<span class="hljs-type">bool</span> <span class="hljs-title function_">insert_string</span><span class="hljs-params">(<span class="hljs-type">char</span> *str, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *insert, <span class="hljs-type">int</span> position, <span class="hljs-type">size_t</span> str_size_max)</span>
+{
+    <span class="hljs-type">size_t</span> str_len = <span class="hljs-built_in">strlen</span>(str);
+    <span class="hljs-type">size_t</span> insert_len = <span class="hljs-built_in">strlen</span>(insert);
+
+    <span class="hljs-keyword">if</span> (position &lt; <span class="hljs-number">0</span> || position &gt; str_len)
+    {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">if</span> (str_len + insert_len &gt;= str_size_max - <span class="hljs-number">1</span>)
+    {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+    memmove(str + position + insert_len - <span class="hljs-number">1</span>, str + position - <span class="hljs-number">1</span>, str_len - position + <span class="hljs-number">1</span>);
+    <span class="hljs-comment">// 将插入起始索引后面的字符串向后移动</span>
+    memmove(str + position, insert, insert_len);
+    <span class="hljs-comment">// 将插入字符串复制到空出来的位置中</span>
+    str[str_len + insert_len] = <span class="hljs-string">&#x27;\0&#x27;</span>;
+    <span class="hljs-comment">// 补上结束符</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">insert_string_test</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">char</span> src_str[<span class="hljs-number">100</span>] = <span class="hljs-string">&quot;to be to be&quot;</span>;
+    <span class="hljs-type">char</span> insert_str[] = <span class="hljs-string">&quot;or not &quot;</span>;
+
+    assert(insert_string(src_str, insert_str, <span class="hljs-number">6</span>, <span class="hljs-number">100</span>));
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s, that is the question\n&quot;</span>, src_str);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    insert_string_test();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>其中<code>size_t</code>类型在64位系统中是64位无符号整数，在32位系统中是32位无符号整数</p>
+<p><code>memmove</code>的函数签名和功能描述如下：</p>
+<pre><code class="language-C"><span class="hljs-type">void</span> *<span class="hljs-title function_">memmove</span><span class="hljs-params">(<span class="hljs-type">void</span> *__dest, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *__src, <span class="hljs-type">size_t</span> __n)</span>
+</code></pre>
+<pre><code>Copy N bytes of SRC to DEST, guaranteeing
+correct behavior for overlapping strings.
+</code></pre>
+<p>尝试使用翻译软件、搜索引擎和ChatGPT理解<code>memmove</code>函数的功能</p>
+
+            
+            
+        </body>
+        </html>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x590d;&#x5408;&#x6570;&#x636e;&#x7c7b;&#x578b;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h2 id="复合数据类型">复合数据类型</h2>
+<h3 id="n维数组">N维数组</h3>
+<p>数组元素的类型可以是数组，例如<code>unsigned char img_gray[1920][1080];</code>就声明了一个长度为1920，类型为 &quot;字符类型，长度1080的数组&quot; 的数组，嵌套了一层的数组被称为二维数组</p>
+<p>其中</p>
+<p><code>img_gray</code>的类型为<code>unsigned char[1920][1080]</code></p>
+<p><code>img_gray[0]</code>的类型为<code>unsigned char[1080]</code></p>
+<p><code>img_gray[0][0]</code>的类型为<code>unsigned char</code></p>
+<p>多维数组常用于图像处理领域，灰度图像的类型常为<code>char[图像高][图像宽]</code>，彩色图像的类型常为<code>char[图像高][图像宽][3]</code>，其中的3代表红绿蓝通道</p>
+<p>可以通过嵌套for循环遍历图像的每个像素</p>
+<p>以下是一个将灰度图像以一个阈值为分隔转化为黑白图像的算法</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BLACK ((unsigned char)0x00)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> WHITE ((unsigned char)0xFF)</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> HEIGHT 20</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> WIDTH 30</span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">binary</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *img, <span class="hljs-type">int</span> height, <span class="hljs-type">int</span> width, <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> threshold)</span>
+{
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; height; i++)
+    {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; width; j++)
+        {
+            <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *pixel = &amp;img[i * width + j];
+            <span class="hljs-keyword">if</span> (*pixel &lt; threshold)
+            {
+                *pixel = BLACK;
+            }
+            <span class="hljs-keyword">else</span>
+            {
+                *pixel = WHITE;
+            }
+        }
+    }
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">char_display</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *<span class="hljs-type">const</span> img, <span class="hljs-type">int</span> height, <span class="hljs-type">int</span> width)</span>
+{
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; height; i++)
+    {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; width; j++)
+        {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, <span class="hljs-string">&quot; `:^%$#@&quot;</span>[img[i * width + j] / <span class="hljs-number">32</span>]);
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, <span class="hljs-string">&quot; `:^%$#@&quot;</span>[img[i * width + j] / <span class="hljs-number">32</span>]);
+        }
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+    }
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> img[HEIGHT][WIDTH];
+
+    <span class="hljs-comment">// 随意地初始化</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; HEIGHT; i++)
+    {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; WIDTH; j++)
+        {
+            img[i][j] = ((i - HEIGHT / <span class="hljs-number">2</span>) * (i - HEIGHT / <span class="hljs-number">2</span>) + (j - WIDTH / <span class="hljs-number">2</span>) * (j - WIDTH / <span class="hljs-number">2</span>)) % <span class="hljs-number">256</span>;
+        }
+    }
+
+    char_display((<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *)&amp;img, HEIGHT, WIDTH);
+
+    <span class="hljs-comment">// 以128为阈值二值化</span>
+    binary((<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *)&amp;img, HEIGHT, WIDTH, <span class="hljs-number">128</span>);
+
+    char_display((<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *)&amp;img, HEIGHT, WIDTH);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="枚举体">枚举体</h3>
+<p><code>typedef</code>是定义类型别名的关键字，语法如下</p>
+<pre><code class="language-C"><span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> u8;
+</code></pre>
+<p>这就是将定义 u8 为 无符号字符型 的别名</p>
+<p>后面定义复合数据类型时会经常用到<code>typedef</code></p>
+<p>枚举体可以为一组常量取名，方便阅读</p>
+<p>例如使用枚举体存储星期</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span>
+{</span>
+    Mon = <span class="hljs-number">1</span>,
+    Tue,
+    Wed,
+    Thu,
+    Fri,
+    Sat,
+    Sun
+} Week;
+
+<span class="hljs-type">char</span> *<span class="hljs-title function_">week2str</span><span class="hljs-params">(Week week)</span>
+{
+    <span class="hljs-type">char</span> *week_strings[] = {<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Monday&quot;</span>, <span class="hljs-string">&quot;Tuesday&quot;</span>, <span class="hljs-string">&quot;Wednesday&quot;</span>, <span class="hljs-string">&quot;Thursday&quot;</span>, <span class="hljs-string">&quot;Friday&quot;</span>, <span class="hljs-string">&quot;Saturday&quot;</span>, <span class="hljs-string">&quot;Sunday&quot;</span>};
+    <span class="hljs-keyword">return</span> week_strings[week];
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    Week w = Mon;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Today is %s\n&quot;</span>, week2str(w));
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="结构体">结构体</h3>
+<p>结构体是用来存储不同数据类型的复合数据类型</p>
+<p>例如想保存学生的信息，可以定义结构体</p>
+<pre><code class="language-C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span>
+{</span>
+    Male,
+    Female,
+} Gender;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>
+{</span>
+    <span class="hljs-type">char</span> *name;
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> stu_number;
+    Gender gender; <span class="hljs-comment">// 使用枚举体表示性别可以兼容美国国情</span>
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> age;
+} Student;
+</code></pre>
+<p>上面的代码定义了<code>Student</code>结构体，<code>name</code>、<code>stu_number</code>等称为结构体的成员变量</p>
+<p>结构体的成员变量在内存中相邻存储，同时进行内存对齐</p>
+<p>下面是一个计算科协男女比的代码</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span></span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span>
+{</span>
+    Male,
+    Female,
+} Gender;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>
+{</span>
+    <span class="hljs-type">char</span> *name;
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> stu_number;
+    Gender gender; <span class="hljs-comment">// 使用枚举体表示性别可以兼容美国国情</span>
+    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> age;
+} Student;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    Student sci_club_students[<span class="hljs-number">4</span>] = {
+        {<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-number">12345</span>, Male, <span class="hljs-number">19</span>},
+        {<span class="hljs-string">&quot;李四&quot;</span>, <span class="hljs-number">9876</span>, Female, <span class="hljs-number">20</span>},
+        {<span class="hljs-string">&quot;王五&quot;</span>, <span class="hljs-number">876567</span>, Male, <span class="hljs-number">21</span>},
+        {<span class="hljs-string">&quot;刘六&quot;</span>, <span class="hljs-number">32123</span>, Female, <span class="hljs-number">18</span>},
+    };
+
+    <span class="hljs-type">int</span> male_counter = <span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> female_conuter = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)
+    {
+        <span class="hljs-keyword">switch</span> (sci_club_students[i].gender)
+        {
+        <span class="hljs-keyword">case</span> Male:
+            male_counter++;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> Female:
+            female_conuter++;
+            <span class="hljs-keyword">break</span>;
+        }
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;科协的男女比为: %.2f\n&quot;</span>, (<span class="hljs-type">float</span>)male_counter / (<span class="hljs-type">float</span>)female_conuter);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>在这段代码中定义了<code>sci_club_students</code>这个结构体数组来存放科协的学生信息</p>
+<p><code>sci_club_students</code>的类型为<code>Student []</code></p>
+<p><code>sci_club_students[i]</code>的类型为<code>Student</code></p>
+<p><code>sci_club_students[i].gender</code>的类型为枚举体<code>Gender</code></p>
+<p>使用<code>.</code>点运算符即可取出结构体的成员变量</p>
+<p>可以使用函数来处理结构体，以下定义了一个计算科协男女比的函数</p>
+<pre><code class="language-C"><span class="hljs-comment">// 略</span>
+
+<span class="hljs-type">float</span> <span class="hljs-title function_">male_female_ratio</span><span class="hljs-params">(Student *students, <span class="hljs-type">int</span> n)</span>
+{
+    <span class="hljs-type">int</span> male_counter = <span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> female_conuter = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)
+    {
+        <span class="hljs-keyword">switch</span> (students[i].gender)
+        {
+        <span class="hljs-keyword">case</span> Male:
+            male_counter++;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> Female:
+            female_conuter++;
+            <span class="hljs-keyword">break</span>;
+        }
+    }
+    <span class="hljs-keyword">return</span> (<span class="hljs-type">float</span>)male_counter / (<span class="hljs-type">float</span>)female_conuter;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    Student sci_club_students[<span class="hljs-number">4</span>] = {
+        {<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-number">12345</span>, Male, <span class="hljs-number">19</span>},
+        {<span class="hljs-string">&quot;李四&quot;</span>, <span class="hljs-number">9876</span>, Female, <span class="hljs-number">20</span>},
+        {<span class="hljs-string">&quot;王五&quot;</span>, <span class="hljs-number">876567</span>, Male, <span class="hljs-number">21</span>},
+        {<span class="hljs-string">&quot;刘六&quot;</span>, <span class="hljs-number">32123</span>, Female, <span class="hljs-number">18</span>},
+    };
+
+    <span class="hljs-built_in">printf</span>(
+        <span class="hljs-string">&quot;科协的男女比为: %.2f\n&quot;</span>,
+        male_female_ratio((Student *)sci_club_students, <span class="hljs-number">4</span>));
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>使用箭头运算符<code>-&gt;</code>可以操作结构体指针</p>
+<p>例如:</p>
+<pre><code class="language-C"><span class="hljs-comment">// 略</span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">age_plus_one</span><span class="hljs-params">(Student *stu)</span>
+{
+    stu-&gt;age++;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    Student xiao_ming = {<span class="hljs-string">&quot;小明&quot;</span>, <span class="hljs-number">123456</span>, Male, <span class="hljs-number">12</span>};
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;小明的年龄为: %d\n&quot;</span>, xiao_ming.age);
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Happy Birthday!\n&quot;</span>);
+
+    age_plus_one(&amp;xiao_ming);
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;小明的年龄为: %d\n&quot;</span>, xiao_ming.age);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>其中<code>stu-&gt;age</code>等同于<code>(*stu).age</code></p>
+<h3 id="函数指针">函数指针</h3>
+<p>函数可以将基本类型，复合类型作为参数，函数也可以将函数作为参数</p>
+<p>通过函数指针，我们可以将函数作为函数的参数，这个作为参数的函数被称为回调函数</p>
+<p>函数指针和所指向的函数参数列表和返回值必须完全匹配</p>
+<p>函数指针的语法如下：</p>
+<pre><code class="language-C"><span class="hljs-comment">// 函数定义</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">f</span><span class="hljs-params">(<span class="hljs-type">float</span> x, <span class="hljs-type">int</span> y)</span>;
+<span class="hljs-comment">// 函数指针的定义</span>
+<span class="hljs-type">int</span> (*fp)(<span class="hljs-type">float</span>, <span class="hljs-type">int</span>);
+<span class="hljs-comment">// 定义了一个名为fp的函数指针，指向参数分别为float和int，返回值为int的函数</span>
+</code></pre>
+<p>以下是一个计算函数运行时长的例子</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span> <span class="hljs-comment">// 获取当前时间并计算时间差</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> <span class="hljs-comment">// 用来生成随机数计算PI</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX_TIMES 20000000</span>
+
+<span class="hljs-comment">/// @brief 运行函数多次并计时</span>
+<span class="hljs-comment">/// @param repeat_times 函数运行的次数</span>
+<span class="hljs-comment">/// @param func 要运行的函数</span>
+<span class="hljs-comment">/// @return 总运行时长(秒)</span>
+<span class="hljs-type">time_t</span> <span class="hljs-title function_">timer</span><span class="hljs-params">(<span class="hljs-type">int</span> repeat_times, <span class="hljs-type">void</span> (*func)())</span>
+{
+    <span class="hljs-type">time_t</span> start, end;
+    time(&amp;start); <span class="hljs-comment">// 获取时间并存入start</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; repeat_times; i++)
+    {
+        func();
+    }
+    time(&amp;end);
+    <span class="hljs-keyword">return</span> difftime(end, start); <span class="hljs-comment">// 求start和end的时间差</span>
+}
+
+<span class="hljs-comment">/// @brief 蒙特卡罗法计算PI，耗时较长的函数</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">calc_pi</span><span class="hljs-params">()</span>
+{
+    srand(time(<span class="hljs-number">0</span>));
+
+    <span class="hljs-type">int</span> counter = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; MAX_TIMES; i++)
+    {
+        <span class="hljs-type">double</span> x = (<span class="hljs-type">double</span>)rand() / RAND_MAX;
+        <span class="hljs-type">double</span> y = (<span class="hljs-type">double</span>)rand() / RAND_MAX;
+        <span class="hljs-keyword">if</span> (x * x + y * y &lt;= <span class="hljs-number">1.0</span>)
+        {
+            counter++;
+        }
+    }
+    <span class="hljs-type">double</span> pi = <span class="hljs-number">4.0</span> * counter / MAX_TIMES;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;PI: %lf\n&quot;</span>, pi);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;耗时%ld秒\n&quot;</span>, timer(<span class="hljs-number">10</span>, calc_pi));
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="动态内存">动态内存</h2>
+<p>数组的大小在编译时就确定了，但是有时候我们所需要的数组大小应该是动态增减的，这时我们就需要使用动态数组</p>
+<p>C语言将内存分为几个区，用来存放不同的内容</p>
+<ul>
+<li>栈区，局部变量，函数调用都保存在栈上</li>
+<li>堆区，存放动态变量，会记录堆上的内存是否被分配</li>
+<li>全局数据区，存放全局变量和静态变量，大小在编译时固定</li>
+<li>常量区，存放常量</li>
+<li>程序代码区，存放程序的二进制代码</li>
+</ul>
+<p>在这里，我们重点关注堆和栈</p>
+<p>栈区用来存储局部变量，我们可以在栈区存储一个指向堆区的指针，从而实现对堆区的访问</p>
+<p>C标准库中提供了一系列函数让我们管理堆区的动态内存</p>
+<p>堆区的内存由用户申请分配，在使用完成后，由用户负责释放</p>
+<p>在申请堆内存时，我们传递需要分配的字节数，返回指向已分配内存的指针</p>
+<p>释放堆内存时，我们传入指向已分配内存的指针</p>
+<h3 id="malloc和free">malloc和free</h3>
+<p>为了操作堆内存，我们必须<code>#include &lt;stdlib.h&gt;</code>，其中包含了<code>malloc</code>和<code>free</code>两个函数，用于申请和释放堆内存</p>
+<p><code>malloc</code>是<code>memory allocation(内存分配)</code>的简写，函数签名如下：</p>
+<pre><code class="language-C"><span class="hljs-type">void</span> *<span class="hljs-title function_">malloc</span><span class="hljs-params">(<span class="hljs-type">size_t</span> __size)</span>
+</code></pre>
+<p>malloc输入需要分配内存的字节数，返回指向已分配内存的指针</p>
+<p>其中<code>size_t</code>是和系统位数一样长的无符号整数，在64位系统下为8字节长的无符号整数</p>
+<p><code>void *</code>表示指向任意类型的指针，需要通过强制类型转换将其转换成所需类型的指针</p>
+<p>如果堆区已经没有足够大的可分配内存，那么<code>malloc</code>会返回<code>NULL</code>，<code>NULL</code>被宏定义为0</p>
+<p>free函数用于释放已分配的内存，其函数签名如下：</p>
+<pre><code class="language-C"><span class="hljs-type">void</span> <span class="hljs-title function_">free</span><span class="hljs-params">(<span class="hljs-type">void</span> *__ptr)</span>
+</code></pre>
+<p><code>__ptr</code>为指向已分配内存的指针</p>
+<p><code>void *</code>表示输入一个指向任意类型的指针，并什么都不返回</p>
+<p>动态内存使用完毕必须释放，否则就会导致堆区没有可供分配的内存，我们称之为内存泄露</p>
+<p>如果一个内存区域被释放两次，我们称之为二次释放</p>
+<p>内存泄露和二次释放都是编写动态内存程序常见的bug</p>
+<h3 id="实现动态数组">实现动态数组</h3>
+<p>我希望有一个数组可以根据需要动态分配内存，我们叫它动态数组<code>vector</code></p>
+<p>实现逻辑如下：</p>
+<p>首先预先分配一块内存，如果添加的数据超出分配的内存大小，就重新分配大小为原来两倍的内存，并复制全部数据到新内存中</p>
+<p>代码如下：</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdbool.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;err.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> DEFAULT_INIT_CAPACITY 1</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ERROR (-1)</span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> ItemType;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Vector</span>
+{</span>
+    ItemType *data;
+    <span class="hljs-type">size_t</span> size;
+    <span class="hljs-type">size_t</span> capacity;
+} Vector;
+
+Vector <span class="hljs-title function_">new_vec</span><span class="hljs-params">()</span>
+{
+    Vector vec = {(ItemType *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(ItemType) * DEFAULT_INIT_CAPACITY), <span class="hljs-number">0</span>, DEFAULT_INIT_CAPACITY};
+    <span class="hljs-keyword">if</span> (vec.data == <span class="hljs-literal">NULL</span>)
+    {
+        vec.capacity = <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-keyword">return</span> vec;
+}
+
+Vector <span class="hljs-title function_">new_vec_with_capacity</span><span class="hljs-params">(<span class="hljs-type">size_t</span> cap)</span>
+{
+    Vector vec = {(ItemType *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(ItemType) * cap), <span class="hljs-number">0</span>, cap};
+    <span class="hljs-keyword">if</span> (vec.data == <span class="hljs-literal">NULL</span>)
+    {
+        vec.capacity = <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-keyword">return</span> vec;
+}
+
+Vector <span class="hljs-title function_">new_vec_all_with_cap</span><span class="hljs-params">(ItemType val, <span class="hljs-type">size_t</span> cap)</span>
+{
+    Vector vec = {(ItemType *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(ItemType) * cap), <span class="hljs-number">0</span>, cap};
+    <span class="hljs-keyword">if</span> (vec.data == <span class="hljs-literal">NULL</span>)
+    {
+        vec.capacity = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">return</span> vec;
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; cap; i++)
+    {
+        vec.data[i] = val;
+    }
+    <span class="hljs-keyword">return</span> vec;
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">drop_vec</span><span class="hljs-params">(Vector *vec)</span>
+{
+    <span class="hljs-built_in">free</span>(vec-&gt;data);
+    vec-&gt;data = <span class="hljs-literal">NULL</span>;
+    vec-&gt;size = <span class="hljs-number">0</span>;
+    vec-&gt;capacity = <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">vec_pop</span><span class="hljs-params">(Vector *vec)</span>
+{
+    <span class="hljs-keyword">if</span> (vec-&gt;size == <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-keyword">return</span> ERROR;
+    }
+    vec-&gt;size--;
+    <span class="hljs-keyword">return</span> vec-&gt;data[vec-&gt;size];
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">vec_mem_prepare</span><span class="hljs-params">(Vector *vec, <span class="hljs-type">size_t</span> size)</span>
+{
+    <span class="hljs-keyword">if</span> (vec-&gt;size + size - <span class="hljs-number">1</span> == vec-&gt;capacity)
+    {
+        ItemType *data = (ItemType *)<span class="hljs-built_in">realloc</span>(vec-&gt;data, vec-&gt;capacity * <span class="hljs-number">2</span> * <span class="hljs-keyword">sizeof</span>(ItemType));
+        vec-&gt;data = data;
+        vec-&gt;capacity *= <span class="hljs-number">2</span>;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">if</span> (size &gt; vec-&gt;capacity / <span class="hljs-number">2</span>)
+    {
+        vec_mem_prepare(vec, size - vec-&gt;capacity / <span class="hljs-number">2</span>);
+    }
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">vec_append</span><span class="hljs-params">(Vector *vec, ItemType val)</span>
+{
+    vec_mem_prepare(vec, <span class="hljs-number">1</span>);
+    vec-&gt;data[vec-&gt;size] = val;
+    vec-&gt;size++;
+}
+
+<span class="hljs-type">bool</span> <span class="hljs-title function_">vec_empty</span><span class="hljs-params">(Vector *vec)</span>
+{
+    <span class="hljs-keyword">return</span> vec-&gt;size == <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">vec_insert</span><span class="hljs-params">(Vector *vec, <span class="hljs-type">size_t</span> index, ItemType val)</span>
+{
+    vec_mem_prepare(vec, <span class="hljs-number">1</span>);
+    memmove(&amp;vec-&gt;data[index + <span class="hljs-number">1</span>], &amp;vec-&gt;data[index], <span class="hljs-keyword">sizeof</span>(ItemType) * (vec-&gt;size - index));
+    vec-&gt;data[index] = val;
+    vec-&gt;size++;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">vec_remove</span><span class="hljs-params">(Vector *vec, <span class="hljs-type">size_t</span> index)</span>
+{
+    <span class="hljs-keyword">if</span> (index &gt;= vec-&gt;size)
+    {
+        <span class="hljs-keyword">return</span> ERROR;
+    }
+    <span class="hljs-type">int</span> val = vec-&gt;data[index];
+    memmove(&amp;vec-&gt;data[index], &amp;vec-&gt;data[index + <span class="hljs-number">1</span>], <span class="hljs-keyword">sizeof</span>(ItemType) * (vec-&gt;size - index - <span class="hljs-number">1</span>));
+    vec-&gt;size--;
+    <span class="hljs-keyword">return</span> val;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">vec_get</span><span class="hljs-params">(<span class="hljs-type">const</span> Vector *<span class="hljs-type">const</span> vec, <span class="hljs-type">size_t</span> index)</span>
+{
+    <span class="hljs-keyword">if</span> (index &gt;= vec-&gt;size)
+    {
+        <span class="hljs-keyword">return</span> ERROR;
+    }
+    <span class="hljs-keyword">return</span> vec-&gt;data[index];
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">vec_test</span><span class="hljs-params">()</span>
+{
+    Vector v = new_vec();
+    vec_append(&amp;v, <span class="hljs-number">1</span>);
+    vec_append(&amp;v, <span class="hljs-number">2</span>);
+    vec_append(&amp;v, <span class="hljs-number">3</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; v.size; i++)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, v.data[i]);
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, vec_pop(&amp;v));
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, vec_remove(&amp;v, <span class="hljs-number">0</span>));
+    vec_append(&amp;v, <span class="hljs-number">4</span>);
+    vec_insert(&amp;v, <span class="hljs-number">1</span>, <span class="hljs-number">10</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; v.size; i++)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, v.data[i]);
+    }
+
+    drop_vec(&amp;v);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    vec_test();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>小作业：</p>
+<ol>
+<li>
+<p>实现vec_sum函数，求动态数组中所有元素的和</p>
+</li>
+<li>
+<p>实现vec_find函数，<code>int vec_find(ItemType val)</code>，输入一个值val，返回这个值对应的索引，如果有多个值相同，返回索引的最小值，找不到返回-1</p>
+<p>例如：</p>
+<p>vec_find([1,2,3], 1) 返回0</p>
+<p>vec_find([2,3,4], 1) 返回-1</p>
+<p>vec_find([4,5,5], 5) 返回1</p>
+</li>
+<li>
+<p>实现vec_cat函数，<code>void vec_cat(Vector *dest, const Vector *const src)</code>，将src动态数组拼接到dest动态数组尾部</p>
+<p>例如：</p>
+<p>vec_cat([1,2,3], [4,5,6])</p>
+<p>结果[1,2,3]变为[1,2,3,4,5,6]</p>
+</li>
+<li>
+<p>实现vec_map函数，<code>Vector *vec_map(Vector *v, Itemtype (*f)(Itemtype))</code>，将动态数组的每一个元素通过f进行变换</p>
+<p>例如：</p>
+<pre><code class="language-C">ItemType <span class="hljs-title function_">sqr</span><span class="hljs-params">(ItemType x)</span> {
+    <span class="hljs-keyword">return</span> x * x;
+}
+
+ItemType <span class="hljs-title function_">mod_10</span><span class="hljs-params">(ItemType x)</span> {
+    <span class="hljs-keyword">return</span> x % <span class="hljs-number">10</span>;
+}
+
+vec_map(vec_map([<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>], sqr), mod_10)
+</code></pre>
+<p>[5,6,7]经过第一次变换后，结果为[25,36,49]</p>
+<p>经过第二次变换后，结果为[5,6,9]</p>
+</li>
+</ol>
+<h3 id="末尾的话">末尾的话</h3>
+<p>复合数据类型和动态数组结合使用在实际编程中非常常见</p>
+<p>在游戏中，使用结构体来存储敌人的各项信息（位置、速度、血量等），通过动态数组来存储所有敌人的信息</p>
+<p>敌人被刷新出来就在动态数组中添加元素，敌人死亡就在动态数组中删除元素</p>
+<p>如果你看其他C语言教材，你可能学习到一个叫作链表的数据结构，它同样可以动态地增减元素</p>
+<p>但是链表的各个元素在内存中不连续，这会极大地降低缓存命中率</p>
+<p>所以何时使用链表，何时使用动态数组呢？</p>
+<p>答：永远不使用链表，永远使用动态数组</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

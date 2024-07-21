@@ -476,6 +476,44 @@ y = -(i - Y_CHARS / <span class="hljs-number">2</span>) / (<span class="hljs-typ
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
+<h3 id="多文件工程">多文件工程</h3>
+<p>模块化的另一种方式是使用多文件组成C语言工程</p>
+<p>其中包含了负责声明的头文件(.h)和负责实现的源文件(.c)</p>
+<p>在小熊猫C++中选择 文件-&gt;新建-&gt;新建项目，并创建一个默认的C语言项目</p>
+<p>右键源文件，点击新建一个项目文件，放置main函数的C文件一般用<code>main.c</code>或<code>项目名.c</code>命名</p>
+<p>例如我们要写一个初等数学库</p>
+<p>右键头文件，选择新建头文件，命名为<code>simple_math.h</code>，声明一个求最大公约数的函数</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SIMPLE_MATH_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SIMPLE_MATH_H</span>
+
+<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> <span class="hljs-title function_">gcd</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> a,<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> b)</span>;
+
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+</code></pre>
+<p>宏定义保证头文件只导入一次</p>
+<p>右键源文件，选择新建一个项目文件，命名为<code>simple_math.c</code>，实现求最大公约数的函数</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;simple_math.h&quot;</span></span>
+
+<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> <span class="hljs-title function_">gcd</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> a,<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> b)</span>
+{
+	<span class="hljs-keyword">if</span>(b==<span class="hljs-number">0</span>)
+		<span class="hljs-keyword">return</span> a;
+	<span class="hljs-keyword">else</span>
+		<span class="hljs-keyword">return</span> gcd(b,a%b);
+}
+</code></pre>
+<p><code>#include &quot;simple_math.h&quot;</code>中的双引号用于引用用户目录下的头文件</p>
+<p>在<code>main.c</code>中测试我们编写的库</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;simple_math.h&quot;</span></span>
+
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;12 和 28 的最大公约数为: %d\n&quot;</span>, gcd(<span class="hljs-number">12</span>, <span class="hljs-number">28</span>));
+}
+</code></pre>
+<p>编译并运行，输出<code>12 和 28 的最大公约数为: 4</code></p>
+<p>实际项目中，一般使用集成开发环境(例如VS)来管理多文件工程，或者使用CMake和Makefile编写构建规则来管理多文件工程</p>
 <h3 id="末尾的话">末尾的话</h3>
 <p>绘制函数图像的程序是初学者首次接触到的较长的程序，同时，它也实现了一个较为复杂的功能</p>
 <p>如果未来要参加比赛的话，你可能需要与其他人组队完成一个比较复杂的项目，这就需要你写出逻辑清晰、文档完备的代码</p>
