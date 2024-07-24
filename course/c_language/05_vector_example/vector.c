@@ -194,7 +194,7 @@ void vec_cat(Vector *dest, const Vector *const src)
 /// @param vec 动态数组
 /// @param f 变换函数
 /// @return 变换后的指向动态数组的指针
-Vector *vec_map(Vector *vec, ItemType (*f)(ItemType))
+Vector *vec_map(Vector *vec, MapperFunc f)
 {
     for (int i = 0; i < (int)vec->size; i++)
     {
@@ -208,7 +208,7 @@ Vector *vec_map(Vector *vec, ItemType (*f)(ItemType))
 /// @param vec 动态数组
 /// @param f 过滤函数
 /// @return 过滤后的指向动态数组的指针
-Vector *vec_filter(Vector *vec, bool (*f)(ItemType))
+Vector *vec_filter(Vector *vec, FilterFunc f)
 {
     int j = 0;
     size_t size = 0;

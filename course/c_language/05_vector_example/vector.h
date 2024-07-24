@@ -21,6 +21,9 @@
 
 typedef int ItemType;
 
+typedef ItemType (*MapperFunc)(ItemType);
+typedef bool (*FilterFunc)(ItemType);
+
 typedef struct Vector
 {
     ItemType *data;
@@ -60,9 +63,9 @@ int vec_find(const Vector *const vec, ItemType val);
 
 void vec_cat(Vector *dest, const Vector *const src);
 
-Vector *vec_map(Vector *vec, ItemType (*f)(ItemType));
+Vector *vec_map(Vector *vec, MapperFunc f);
 
-Vector *vec_filter(Vector *vec, bool (*f)(ItemType));
+Vector *vec_filter(Vector *vec, FilterFunc f);
 
 #ifdef ITEM_TYPE_IS_INT
 
