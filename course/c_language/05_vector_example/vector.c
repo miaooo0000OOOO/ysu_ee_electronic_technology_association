@@ -1,7 +1,5 @@
 #include "vector.h"
 
-/// @brief 创建动态数组
-/// @return 返回创建的动态数组，容量为`DEFAULT_INIT_CAPACITY`
 Vector new_vec()
 {
     Vector vec = {(ItemType *)malloc(sizeof(ItemType) * DEFAULT_INIT_CAPACITY), 0, DEFAULT_INIT_CAPACITY};
@@ -12,9 +10,6 @@ Vector new_vec()
     return vec;
 }
 
-/// @brief 创建指定容量的动态数组
-/// @param cap 容量
-/// @return 返回容量为`cap`的动态数组
 Vector new_vec_with_capacity(size_t cap)
 {
     Vector vec = {(ItemType *)malloc(sizeof(ItemType) * cap), 0, cap};
@@ -25,10 +20,6 @@ Vector new_vec_with_capacity(size_t cap)
     return vec;
 }
 
-/// @brief 创建指定长度的动态数组，并初始化
-/// @param val 元素的初始值
-/// @param size 动态数组长度
-/// @return 返回长度为`size`，值均为`val`的动态数组
 Vector new_vec_all_with_size(ItemType val, size_t size)
 {
     Vector vec = {(ItemType *)malloc(sizeof(ItemType) * size), size, size};
@@ -45,8 +36,6 @@ Vector new_vec_all_with_size(ItemType val, size_t size)
     return vec;
 }
 
-/// @brief 销毁动态数组，释放内存
-/// @param vec 要销毁的动态数组
 void drop_vec(Vector *vec)
 {
     free(vec->data);
@@ -55,12 +44,9 @@ void drop_vec(Vector *vec)
     vec->capacity = 0;
 }
 
-/// @brief 弹出动态数组的最后一个元素并作为函数的返回值
-/// @param vec 动态数组
-/// @return 动态数组被弹出的最后一个值，如果数组为空，返回`ERROR`
 ItemType vec_pop(Vector *vec)
 {
-    if (vec_empty(vec))
+    if (vec_is_empty(vec))
     {
         return ERROR;
     }
@@ -68,9 +54,6 @@ ItemType vec_pop(Vector *vec)
     return vec->data[vec->size];
 }
 
-/// @brief 使动态数组的空闲内存可以存下`size`个元素
-/// @param vec 动态数组
-/// @param size 使空闲内存的大小 >= `size`
 void vec_mem_prepare(Vector *vec, size_t size)
 {
     for (size_t available_space = vec->capacity - vec->size;
@@ -83,28 +66,24 @@ void vec_mem_prepare(Vector *vec, size_t size)
     }
 }
 
-/// @brief 在动态数组的末尾添加元素
-/// @param vec 动态数组
-/// @param val 元素的值
-void vec_append(Vector *vec, ItemType val)
+void vec_push(Vector *vec, ItemType val)
 {
     vec_mem_prepare(vec, 1);
     vec->data[vec->size] = val;
     vec->size++;
 }
 
-/// @brief 动态数组是否为空
-/// @param vec 动态数组
-/// @return 动态数组是否为空
-bool vec_empty(const Vector *const vec)
+void vec_append(Vector *dest, Vector *src)
+{
+    vec_cat(dest, src);
+    src->size = 0;
+}
+
+bool vec_is_empty(const Vector *const vec)
 {
     return vec->size == 0;
 }
 
-/// @brief 在动态数组中插入元素
-/// @param vec 动态数组
-/// @param index 新元素插入到的索引
-/// @param val 插入的值
 void vec_insert(Vector *vec, size_t index, ItemType val)
 {
     vec_mem_prepare(vec, 1);
@@ -113,10 +92,6 @@ void vec_insert(Vector *vec, size_t index, ItemType val)
     vec->size++;
 }
 
-/// @brief 移除动态数组索引位置的值，并作为返回值
-/// @param vec 动态数组
-/// @param index 要移除元素的索引
-/// @return 被移除元素的值，如果索引超出数组范围，返回`ERROR`
 ItemType vec_remove(Vector *vec, size_t index)
 {
     if (index >= vec->size)
@@ -124,15 +99,11 @@ ItemType vec_remove(Vector *vec, size_t index)
         return ERROR;
     }
     int val = vec->data[index];
-    memmove(&vec->data[index], &vec->data[index + 1], sizeof(ItemType) * (vec->size - index - 1));
+    memcpy(&vec->data[index], &vec->data[index + 1], sizeof(ItemType) * (vec->size - index - 1));
     vec->size--;
     return val;
 }
 
-/// @brief 获取动态数组索引处的值
-/// @param vec 动态数组
-/// @param index 要获取元素的索引
-/// @return 动态数组索引处的值，如果索引超出数组范围，就返回`ERROR`
 ItemType vec_get(const Vector *const vec, size_t index)
 {
     if (index >= vec->size)
@@ -144,9 +115,6 @@ ItemType vec_get(const Vector *const vec, size_t index)
 
 #ifdef ITEM_TYPE_ADDITIVE
 
-/// @brief 求动态数组中所有元素的和
-/// @param vec 动态数组
-/// @return 动态数组中所有元素的和
 ItemType vec_sum(const Vector *const vec)
 {
     ItemType sum = 0;
@@ -161,10 +129,6 @@ ItemType vec_sum(const Vector *const vec)
 
 #endif
 
-/// @brief 查找值对应的索引
-/// @param vec 动态数组
-/// @param val 值
-/// @return 查找值对应的索引，找不到返回-1，如果查找到多个值，返回索引的最小值
 int vec_find(const Vector *const vec, ItemType val)
 {
     for (int i = 0; i < (int)vec->size; i++)
@@ -177,24 +141,17 @@ int vec_find(const Vector *const vec, ItemType val)
     return -1;
 }
 
-/// @brief 将`src`动态数组拼接到`dest`动态数组尾部
-/// @param dest 目标动态数组
-/// @param src 原动态数组
 void vec_cat(Vector *dest, const Vector *const src)
 {
     vec_mem_prepare(dest, src->size);
-    memmove(
+    memcpy(
         &dest->data[dest->size],
         &src->data[0],
         src->size * sizeof(ItemType));
     dest->size += src->size;
 }
 
-/// @brief 对动态数组内的元素用`f`作变换
-/// @param vec 动态数组
-/// @param f 变换函数
-/// @return 变换后的指向动态数组的指针
-Vector *vec_map(Vector *vec, MapperFunc f)
+Vector *vec_map(Vector *vec, Mapper f)
 {
     for (int i = 0; i < (int)vec->size; i++)
     {
@@ -204,10 +161,6 @@ Vector *vec_map(Vector *vec, MapperFunc f)
     return vec;
 }
 
-/// @brief 过滤出动态数组中满足条件`f`的元素
-/// @param vec 动态数组
-/// @param f 过滤函数
-/// @return 过滤后的指向动态数组的指针
 Vector *vec_filter(Vector *vec, Filter f)
 {
     int j = 0;
@@ -228,8 +181,6 @@ Vector *vec_filter(Vector *vec, Filter f)
 
 #ifdef ITEM_TYPE_IS_INT
 
-/// @brief 打印动态数组
-/// @param vec 动态数组
 void print_vec(const Vector *const vec)
 {
     printf("[");
@@ -241,3 +192,121 @@ void print_vec(const Vector *const vec)
 }
 
 #endif
+
+#ifdef ITEM_TYPE_ORDER
+
+bool vec_eq(const Vector *const v1, const Vector *const v2)
+{
+    if (v1->size != v2->size)
+    {
+        return false;
+    }
+    for (int i = 0; i < (int)v1->size; i++)
+    {
+        if (v1->data[i] != v2->data[i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+int vec_cmp(const Vector *const v1, const Vector *const v2)
+{
+    size_t min_size;
+    if (v1->size < v2->size)
+    {
+        min_size = v1->size;
+    }
+    else
+    {
+        min_size = v2->size;
+    }
+
+    for (int i = 0; i < (int)min_size; i++)
+    {
+        if (v1->data[i] != v2->data[i])
+        {
+            return v1->data[i] - v2->data[i];
+        }
+    }
+
+    return v1->size - v2->size;
+}
+
+Vector *vec_dedup(Vector *vec)
+{
+    ItemType temp = vec->data[0];
+
+    for (int i = 1; i < (int)vec->size; i++)
+    {
+        if (vec->data[i] == temp)
+        {
+            vec_remove(vec, i);
+            i--;
+        }
+        else
+        {
+            temp = vec->data[i];
+        }
+    }
+
+    return vec;
+}
+#endif
+
+ItemType vec_swap_remove(Vector *vec, size_t index)
+{
+    if (index >= vec->size)
+    {
+        return ERROR;
+    }
+    ItemType ret = vec->data[index];
+    vec->data[index] = vec->data[vec->size - 1];
+    vec->size--;
+    return ret;
+}
+
+Vector vec_split_off(Vector *vec, size_t at)
+{
+    if (at >= vec->size)
+    {
+        return new_vec();
+    }
+    Vector ret = new_vec_with_capacity(vec->size - at);
+    memcpy(&ret.data[0], &vec->data[at], sizeof(ItemType) * (vec->size - at));
+    ret.size = vec->size - at;
+    vec->size = at;
+
+    return ret;
+}
+
+bool vec_truncate(Vector *vec, size_t len)
+{
+    if (len > vec->size)
+    {
+        return false;
+    }
+    vec->size = len;
+    return true;
+}
+
+
+Vector vec_drain(Vector *vec, size_t from, size_t to)
+{
+    if (from > to)
+    {
+        return new_vec();
+    }
+    if (to > vec->size)
+    {
+        return new_vec();
+    }
+    size_t ret_vec_len = to - from;
+    Vector ret = new_vec_with_capacity(ret_vec_len);
+    memcpy(&ret.data[0], &vec->data[from], sizeof(ItemType) * ret_vec_len);
+    memcpy(&vec->data[from], &vec->data[to], sizeof(ItemType) * (vec->size - to));
+    ret.size = ret_vec_len;
+    vec->size -= ret_vec_len;
+    return ret;
+}

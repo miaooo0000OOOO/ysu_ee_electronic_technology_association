@@ -102,7 +102,7 @@ bool collision_merge_one(Env *e)
             );
             *si = s;
             // delete sj
-            memmove(sj, sj + 1, (e->n - j - 1) * sizeof(Star));
+            memcpy(sj, sj + 1, (e->n - j - 1) * sizeof(Star));
             e->n -= 1;
             return true;
         }

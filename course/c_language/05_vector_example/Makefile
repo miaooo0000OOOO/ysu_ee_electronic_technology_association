@@ -3,10 +3,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c99
   
 # 定义源文件  
-SRCS = main.c vector.c
+SRCS = main.c vector.c vec_algorithm.c
   
 # 定义目标文件名  
-TARGET = vector
+TARGET = vector  
   
 # 默认目标：构建程序  
 all: $(TARGET)  
