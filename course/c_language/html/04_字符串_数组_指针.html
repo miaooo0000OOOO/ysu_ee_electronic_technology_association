@@ -138,8 +138,8 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <h2 id="字符串-数组-指针">字符串 数组 指针</h2>
-<h3 id="内存模型">内存模型</h3>
+            <h1 id="字符串-数组-指针">字符串 数组 指针</h1>
+<h2 id="内存模型">内存模型</h2>
 <p>内存是可读写的储存部件，就像仓库货架有编号一样，内存也有地址</p>
 <p>内存以一个字节为单位读写和分配地址</p>
 <p>数字电路中，一条线要么是高电平，要么是低电平</p>
@@ -154,7 +154,7 @@
 <p>如果访问的数据在缓存中，我们称为缓存命中，缓存命中可以显著提高数据访问的速度</p>
 <p>如果一组数据是同类数据，比如一个班级内学生的成绩或一个城市中的房价和房屋面积，那么让其<strong>相邻存储</strong>会提高程序的运行速度，因为提高了缓存命中的概率</p>
 <p>如果你对地址相连的内存进行操作，例如复制一段连续的内存，相对于不连续的内存，速度会显著提高，因为有专门的CPU指令对这个操作进行硬件层面的优化</p>
-<h3 id="数组">数组</h3>
+<h2 id="数组">数组</h2>
 <p>我们使用数组将<strong>同一类型</strong>的一组数据存放在<strong>连续</strong>的内存中</p>
 <p>我们使用以下方式初始化数组：</p>
 <pre><code class="language-C"><span class="hljs-type">int</span> a[<span class="hljs-number">10</span>];  <span class="hljs-comment">// 初始化一个名叫a的数组，长度为10，其中的每个元素都是整型</span>
@@ -196,7 +196,7 @@
 </code></pre>
 <p>如果数组索引超出了数组长度，例如访问长度为10的数组的第11个元素，这会导致数组访问越界</p>
 <p>数组越界时，可能修改其他变量，也可能导致段错误(Segmentation Fault)</p>
-<h3 id="指针">指针</h3>
+<h2 id="指针">指针</h2>
 <p>指针存储了数据在内存中的地址</p>
 <p><code>&amp;</code>称为取址运算符</p>
 <p>我们可以使用<code>&amp;</code>符号获取变量的起始地址，例如：</p>
@@ -322,7 +322,113 @@
 <p>前一个<code>const</code>表示指针指向的内容不可变，后一个<code>const</code>表示指针指向的地址不可变</p>
 <p>因此<code>const double * const arr</code>表示以只读的方式访问arr</p>
 <p>同理，<code>const double arr[]</code>也表示以只读的方式访问arr</p>
-<h3 id="字符串">字符串</h3>
+<h2 id="排序算法">排序算法</h2>
+<p>将无序数组变得有序(从小到大)称为排序</p>
+<p>两种简单和常用的排序算法分别为：选择排序和冒泡排序</p>
+<p>选择排序的算法描述如下：</p>
+<pre><code>重复(元素个数-1)次：
+    把第一个未排序的元素设为最小值
+    遍历每一个未排序的元素：
+        如果当前元素&lt;现在的最小值：
+            将当前元素设置为现在的最小值
+    将最小值与第一个没有排过序的位置交换
+</code></pre>
+<p>代码实现如下：</p>
+<pre><code class="language-C"><span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> *b)</span> <span class="hljs-comment">// 交换两个变量</span>
+{
+    <span class="hljs-type">int</span> temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+<span class="hljs-comment">// 选择排序</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> arr[], <span class="hljs-type">int</span> len)</span>
+{
+    <span class="hljs-type">int</span> i, j;
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++)
+    {
+        <span class="hljs-type">int</span> min_index = i;
+        <span class="hljs-keyword">for</span> (j = i + <span class="hljs-number">1</span>; j &lt; len; j++) <span class="hljs-comment">// 遍历未排序的数组</span>
+        {
+            <span class="hljs-keyword">if</span> (arr[j] &lt; arr[min_index]) <span class="hljs-comment">// 找到目前最小值</span>
+            {
+                min_index = j; <span class="hljs-comment">// 更新最小值</span>
+            }
+        }
+        swap(&amp;arr[min_index], &amp;arr[i]); <span class="hljs-comment">// 交换两个数</span>
+    }
+}
+</code></pre>
+<p>其次是冒泡排序，算法描述如下：</p>
+<pre><code>重复(元素个数-1)次：
+    遍历每个未排序元素：
+        比较相邻的元素。如果第一个比第二个大，就交换他们两个。
+</code></pre>
+<p>代码实现如下：</p>
+<pre><code class="language-C"><span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> *b)</span> 
+{
+    <span class="hljs-type">int</span> temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+<span class="hljs-comment">// 冒泡排序</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">bubble_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> arr[], <span class="hljs-type">int</span> len)</span>
+{
+    <span class="hljs-type">int</span> i, j, temp;
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++)
+    {
+        <span class="hljs-keyword">for</span> (j = <span class="hljs-number">0</span>; j &lt; len - <span class="hljs-number">1</span> - i; j++)
+        {
+            <span class="hljs-keyword">if</span> (arr[j] &gt; arr[j + <span class="hljs-number">1</span>])
+            {
+                swap(&amp;arr[j], &amp;arr[j + <span class="hljs-number">1</span>]);
+            }
+        }
+    }
+}
+</code></pre>
+<p>这两种算法都在前或后保存了一个已排序数组</p>
+<p>要证明这两种排序的正确性，可以使用数学归纳法：</p>
+<ol>
+<li>证一开始已排序部分是排好序的(一开始已排序部分为空，显然排好序了)</li>
+<li>证如果已排序部分长n，运行一遍外层循环，已排序部分变为n+1</li>
+</ol>
+<p>当循环运行(数组长度-1)次时，要么最大值在最后，要么最小值在最前，因此最后一次循环将已排序部分+2</p>
+<p>将循环运行(数组长度-1)次，可以得到有序数组</p>
+<p>进一步阅读：</p>
+<p><a href="https://www.bilibili.com/video/BV1DP4y1n71W/">【排序算法】八种排序算法可视化过程</a></p>
+<h2 id="查找算法">查找算法</h2>
+<p>对于一个有序数组，搜索其中的一个值对应的索引，可以从数组的中间开始比较，如果查找值小于中间的值，说明查找值在数组左半侧，否则在右半侧</p>
+<p>这种查找算法称为二分查找</p>
+<p>代码实现如下：</p>
+<pre><code class="language-C"><span class="hljs-comment">// 二分查找</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">binary_search</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">int</span> arr[], <span class="hljs-type">int</span> size, <span class="hljs-type">int</span> target)</span>
+{
+    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> right = size - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (left &lt; right)
+    {
+        <span class="hljs-type">int</span> middle = left + ((right - left) / <span class="hljs-number">2</span>);
+        <span class="hljs-keyword">if</span> (arr[middle] &gt; target)
+        {
+            right = middle - <span class="hljs-number">1</span>;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[middle] &lt; target)
+        {
+            left = middle + <span class="hljs-number">1</span>;
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            <span class="hljs-keyword">return</span> middle;
+        }
+    }
+    <span class="hljs-comment">// 没有找到目标值</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}
+</code></pre>
+<p>其消耗时间与数组长度成对数关系</p>
+<h2 id="字符串">字符串</h2>
 <p>之前我们多次使用过字符串，这次我们将深入了解字符串的存储和处理</p>
 <p>字符串中的每一个ASCII字符(7bit)占用一个字节(8bit)，前面用零补齐</p>
 <p>字符串中的字符在内存中连续地排布，并以字符<code>\0</code>结尾</p>
@@ -412,6 +518,7 @@
 correct behavior for overlapping strings.
 </code></pre>
 <p>尝试使用翻译软件、搜索引擎和ChatGPT理解<code>memmove</code>函数的功能</p>
+<p>尝试回答是否可以将代码中的<code>memmove</code>换成<code>memcpy</code></p>
 
             
             

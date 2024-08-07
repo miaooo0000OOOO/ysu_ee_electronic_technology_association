@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>&#x590d;&#x5408;&#x6570;&#x636e;&#x7c7b;&#x578b;</title>
+            <title>&#x590d;&#x5408;&#x6570;&#x636e;&#x7c7b;&#x578b;&#x548c;&#x52a8;&#x6001;&#x5185;&#x5b58;</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -139,7 +139,8 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <h2 id="复合数据类型">复合数据类型</h2>
+            <h1 id="复合数据类型和动态内存">复合数据类型和动态内存</h1>
+<h2 id="复合数据类型">复合数据类型</h2>
 <h3 id="n维数组">N维数组</h3>
 <p>数组元素的类型可以是数组，例如<code>unsigned char img_gray[1920][1080];</code>就声明了一个长度为1920，类型为 &quot;字符类型，长度1080的数组&quot; 的数组，嵌套了一层的数组被称为二维数组</p>
 <p>其中</p>
@@ -222,7 +223,7 @@
 <p>例如使用枚举体存储星期</p>
 <pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
-<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Week</span>
 {</span>
     Mon = <span class="hljs-number">1</span>,
     Tue,
@@ -243,13 +244,30 @@
 {
     Week w = Mon;
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Today is %s\n&quot;</span>, week2str(w));
+    <span class="hljs-comment">// 输出:</span>
+    <span class="hljs-comment">// Today is Monday</span>
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
+</code></pre>
+<p>你是否注意到，使用<code>typedef</code>命名别名时，基本数据类型的别名用小写加下划线，而复合数据类型的别名用首字母大写</p>
+<p>例如</p>
+<pre><code class="language-C"><span class="hljs-keyword">typedef</span> <span class="hljs-type">float</span> f32;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">GenshinImpactElement</span>
+{</span>
+    Fire,
+    Water,
+    Ice,
+    Thunder,
+    Grass,
+    Wind,
+    Rock
+} GenshinImpactElement;
 </code></pre>
 <h3 id="结构体">结构体</h3>
 <p>结构体是用来存储不同数据类型的复合数据类型</p>
 <p>例如想保存学生的信息，可以定义结构体</p>
-<pre><code class="language-C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span>
+<pre><code class="language-C"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Gender</span>
 {</span>
     Male,
     Female,
@@ -259,7 +277,7 @@
 {</span>
     <span class="hljs-type">char</span> *name;
     <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> stu_number;
-    Gender gender; <span class="hljs-comment">// 使用枚举体表示性别可以兼容美国国情</span>
+    Gender gender; <span class="hljs-comment">// 使用枚举体表示性别可以兼容美国国情，并更易阅读</span>
     <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> age;
 } Student;
 </code></pre>
@@ -269,17 +287,17 @@
 <pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span></span>
 
-<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Gender</span>
 {</span>
     Male,
     Female,
 } Gender;
 
-<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span>
 {</span>
     <span class="hljs-type">char</span> *name;
     <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> stu_number;
-    Gender gender; <span class="hljs-comment">// 使用枚举体表示性别可以兼容美国国情</span>
+    Gender gender;
     <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> age;
 } Student;
 
@@ -373,6 +391,8 @@
     age_plus_one(&amp;xiao_ming);
 
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;小明的年龄为: %d\n&quot;</span>, xiao_ming.age);
+    <span class="hljs-comment">// 输出:</span>
+    <span class="hljs-comment">// 小明的年龄为: 13</span>
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
@@ -388,6 +408,12 @@
 <span class="hljs-type">int</span> (*fp)(<span class="hljs-type">float</span>, <span class="hljs-type">int</span>);
 <span class="hljs-comment">// 定义了一个名为fp的函数指针，指向参数分别为float和int，返回值为int的函数</span>
 </code></pre>
+<p>一般我们使用函数指针时，都使用<code>typedef</code>为函数指针取类型别名，例如</p>
+<pre><code class="language-C"><span class="hljs-keyword">typedef</span> <span class="hljs-title function_">int</span> <span class="hljs-params">(*FuncPtr)</span><span class="hljs-params">(<span class="hljs-type">float</span>, <span class="hljs-type">int</span>)</span>;
+FuncPtr fp;
+<span class="hljs-comment">// 等同于</span>
+<span class="hljs-type">int</span> (*fp)(<span class="hljs-type">float</span>, <span class="hljs-type">int</span>);
+</code></pre>
 <p>以下是一个计算函数运行时长的例子</p>
 <pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span> <span class="hljs-comment">// 获取当前时间并计算时间差</span></span>
@@ -395,11 +421,13 @@
 
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX_TIMES 20000000</span>
 
+<span class="hljs-keyword">typedef</span> <span class="hljs-title function_">void</span> <span class="hljs-params">(*VoidFunc)</span><span class="hljs-params">()</span>;
+
 <span class="hljs-comment">/// @brief 运行函数多次并计时</span>
 <span class="hljs-comment">/// @param repeat_times 函数运行的次数</span>
 <span class="hljs-comment">/// @param func 要运行的函数</span>
 <span class="hljs-comment">/// @return 总运行时长(秒)</span>
-<span class="hljs-type">time_t</span> <span class="hljs-title function_">timer</span><span class="hljs-params">(<span class="hljs-type">int</span> repeat_times, <span class="hljs-type">void</span> (*func)())</span>
+<span class="hljs-type">time_t</span> <span class="hljs-title function_">timer</span><span class="hljs-params">(<span class="hljs-type">int</span> repeat_times, VoidFunc func)</span>
 {
     <span class="hljs-type">time_t</span> start, end;
     time(&amp;start); <span class="hljs-comment">// 获取时间并存入start</span>
@@ -469,6 +497,31 @@
 <p>动态内存使用完毕必须释放，否则就会导致堆区没有可供分配的内存，我们称之为内存泄露</p>
 <p>如果一个内存区域被释放两次，我们称之为二次释放</p>
 <p>内存泄露和二次释放都是编写动态内存程序常见的bug</p>
+<h3 id="malloc和free的简易应用">malloc和free的简易应用</h3>
+<p>例如题目需要输入n个数，先输入n，再输入每个数的值</p>
+<p>假设n&lt;1000，你就至少需要开辟一个长度为1000的固定大小数组</p>
+<p>在实际应用中，这显然会浪费大量内存</p>
+<p>因此可以使用动态内存初始化合适长度的数组</p>
+<pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">int</span> n;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);
+    <span class="hljs-type">int</span> *arr = (<span class="hljs-type">int</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>) * n);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)
+    {
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;arr[i]);
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, arr[i]);
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
 <h3 id="实现动态数组">实现动态数组</h3>
 <p>我希望有一个数组可以根据需要动态分配内存，我们叫它动态数组<code>vector</code></p>
 <p>实现逻辑如下：</p>
@@ -478,8 +531,6 @@
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdbool.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
-
-<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;err.h&gt;</span></span>
 
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> DEFAULT_INIT_CAPACITY 1</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> ERROR (-1)</span>
@@ -513,15 +564,16 @@ Vector <span class="hljs-title function_">new_vec_with_capacity</span><span clas
     <span class="hljs-keyword">return</span> vec;
 }
 
-Vector <span class="hljs-title function_">new_vec_all_with_cap</span><span class="hljs-params">(ItemType val, <span class="hljs-type">size_t</span> cap)</span>
+Vector <span class="hljs-title function_">new_vec_all_with_size</span><span class="hljs-params">(ItemType val, <span class="hljs-type">size_t</span> size)</span>
 {
-    Vector vec = {(ItemType *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(ItemType) * cap), <span class="hljs-number">0</span>, cap};
+    Vector vec = {(ItemType *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(ItemType) * size), size, size};
     <span class="hljs-keyword">if</span> (vec.data == <span class="hljs-literal">NULL</span>)
     {
         vec.capacity = <span class="hljs-number">0</span>;
+        vec.size = <span class="hljs-number">0</span>;
         <span class="hljs-keyword">return</span> vec;
     }
-    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; cap; i++)
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; (<span class="hljs-type">int</span>)size; i++)
     {
         vec.data[i] = val;
     }
@@ -548,19 +600,13 @@ Vector <span class="hljs-title function_">new_vec_all_with_cap</span><span class
 
 <span class="hljs-type">void</span> <span class="hljs-title function_">vec_mem_prepare</span><span class="hljs-params">(Vector *vec, <span class="hljs-type">size_t</span> size)</span>
 {
-    <span class="hljs-keyword">if</span> (vec-&gt;size + size - <span class="hljs-number">1</span> == vec-&gt;capacity)
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> available_space = vec-&gt;capacity - vec-&gt;size;
+         available_space &lt; size;
+         available_space = vec-&gt;capacity - vec-&gt;size)
     {
         ItemType *data = (ItemType *)<span class="hljs-built_in">realloc</span>(vec-&gt;data, vec-&gt;capacity * <span class="hljs-number">2</span> * <span class="hljs-keyword">sizeof</span>(ItemType));
         vec-&gt;data = data;
         vec-&gt;capacity *= <span class="hljs-number">2</span>;
-    }
-    <span class="hljs-keyword">else</span>
-    {
-        <span class="hljs-keyword">return</span>;
-    }
-    <span class="hljs-keyword">if</span> (size &gt; vec-&gt;capacity / <span class="hljs-number">2</span>)
-    {
-        vec_mem_prepare(vec, size - vec-&gt;capacity / <span class="hljs-number">2</span>);
     }
 }
 
@@ -628,6 +674,8 @@ Vector <span class="hljs-title function_">new_vec_all_with_cap</span><span class
         <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, v.data[i]);
     }
 
+    vec_mem_prepare(&amp;v, <span class="hljs-number">19</span>);
+
     drop_vec(&amp;v);
 }
 
@@ -644,7 +692,7 @@ Vector <span class="hljs-title function_">new_vec_all_with_cap</span><span class
 <p>实现vec_sum函数，求动态数组中所有元素的和</p>
 </li>
 <li>
-<p>实现vec_find函数，<code>int vec_find(ItemType val)</code>，输入一个值val，返回这个值对应的索引，如果有多个值相同，返回索引的最小值，找不到返回-1</p>
+<p>实现vec_find函数，<code>int vec_find(Vector *vec, ItemType val)</code>，输入一个值val，返回这个值对应的索引，如果有多个值相同，返回索引的最小值，找不到返回-1</p>
 <p>例如：</p>
 <p>vec_find([1,2,3], 1) 返回0</p>
 <p>vec_find([2,3,4], 1) 返回-1</p>
@@ -657,7 +705,7 @@ Vector <span class="hljs-title function_">new_vec_all_with_cap</span><span class
 <p>结果[1,2,3]变为[1,2,3,4,5,6]</p>
 </li>
 <li>
-<p>实现vec_map函数，<code>Vector *vec_map(Vector *v, Itemtype (*f)(Itemtype))</code>，将动态数组的每一个元素通过f进行变换</p>
+<p>实现vec_map函数，<code>Vector *vec_map(Vector *v, Mapper f)</code>，其中<code>typedef ItemType (*Mapper)(ItemType);</code>，将动态数组的每一个元素通过f进行变换</p>
 <p>例如：</p>
 <pre><code class="language-C">ItemType <span class="hljs-title function_">sqr</span><span class="hljs-params">(ItemType x)</span> {
     <span class="hljs-keyword">return</span> x * x;
@@ -673,6 +721,10 @@ vec_map(vec_map([<span class="hljs-number">5</span>,<span class="hljs-number">6<
 <p>经过第二次变换后，结果为[5,6,9]</p>
 </li>
 </ol>
+<p>关于动态数组、堆和栈，你可以进一步阅读：</p>
+<p><a href="https://www.bilibili.com/video/BV1GD421g7pA/">栈为何如此之快?</a></p>
+<p><a href="https://www.bilibili.com/video/BV1Vi421U7ew/">堆为何如此之慢？</a></p>
+<p><a href="https://www.bilibili.com/video/BV1vw4m1q7pQ/">动态数组的内部机制（ArrayList VS LinkedList）</a></p>
 <h3 id="末尾的话">末尾的话</h3>
 <p>复合数据类型和动态数组结合使用在实际编程中非常常见</p>
 <p>在游戏中，使用结构体来存储敌人的各项信息（位置、速度、血量等），通过动态数组来存储所有敌人的信息</p>
@@ -680,7 +732,7 @@ vec_map(vec_map([<span class="hljs-number">5</span>,<span class="hljs-number">6<
 <p>如果你看其他C语言教材，你可能学习到一个叫作链表的数据结构，它同样可以动态地增减元素</p>
 <p>但是链表的各个元素在内存中不连续，这会极大地降低缓存命中率</p>
 <p>所以何时使用链表，何时使用动态数组呢？</p>
-<p>答：永远不使用链表，永远使用动态数组</p>
+<p>答：永不使用链表，永远使用动态数组</p>
 
             <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
             

@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>&#x51fd;&#x6570;</title>
+            <title>&#x51fd;&#x6570;&#x4e0e;&#x8f6f;&#x4ef6;&#x5de5;&#x7a0b;&#x7b80;&#x8ff0;</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -139,7 +139,8 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <h2 id="函数">函数</h2>
+            <h1 id="函数与软件工程简述">函数与软件工程简述</h1>
+<h2 id="函数">函数</h2>
 <p>函数是C语言实现代码复用的基本单元，C语言的函数可以有多个输入，一个输出</p>
 <p>最简单的函数既没有输入也没有输出</p>
 <pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
@@ -396,6 +397,9 @@ y = -(i - Y_CHARS / <span class="hljs-number">2</span>) / (<span class="hljs-typ
 <li><strong>代码审查</strong>：通过同行评审提高代码质量和发现潜在问题。</li>
 <li><strong>测试驱动开发</strong>：通过编写测试用例来驱动代码的设计和开发。</li>
 </ul>
+<p>进一步了解现代软件开发流程，你可以参考：</p>
+<p><a href="https://saferules.github.io/">360 安全规则集合</a></p>
+<p><a href="https://www.bilibili.com/video/BV1h3411G741/">软件工程背后的思想是如何影响编程的</a></p>
 <h3 id="通过dxygon为函数编写文档">通过Dxygon为函数编写文档</h3>
 <p>Doxygen 是软件开发中广泛使用的文档生成器工具。它可以通过特定格式的注释自动生成文档</p>
 <pre><code class="language-C"><span class="hljs-comment">/// @brief 计算向量的模长</span>
@@ -481,6 +485,7 @@ y = -(i - Y_CHARS / <span class="hljs-number">2</span>) / (<span class="hljs-typ
 <p>其中包含了负责声明的头文件(.h)和负责实现的源文件(.c)</p>
 <p>在小熊猫C++中选择 文件-&gt;新建-&gt;新建项目，并创建一个默认的C语言项目</p>
 <p>右键源文件，点击新建一个项目文件，放置main函数的C文件一般用<code>main.c</code>或<code>项目名.c</code>命名</p>
+<p>头文件一般与其对应的源文件同名，例如<code>simple_math.h</code>与<code>simple_math.c</code>是对应的头文件和源文件</p>
 <p>例如我们要写一个初等数学库</p>
 <p>右键头文件，选择新建头文件，命名为<code>simple_math.h</code>，声明一个求最大公约数的函数</p>
 <pre><code class="language-C"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SIMPLE_MATH_H</span>
@@ -514,6 +519,56 @@ y = -(i - Y_CHARS / <span class="hljs-number">2</span>) / (<span class="hljs-typ
 </code></pre>
 <p>编译并运行，输出<code>12 和 28 的最大公约数为: 4</code></p>
 <p>实际项目中，一般使用集成开发环境(例如VS)来管理多文件工程，或者使用CMake和Makefile编写构建规则来管理多文件工程</p>
+<p>如果需要导出全局变量，那么你需要使用<code>extern</code>关键字</p>
+<p>例如写一个控制小车的程序，需要导出左右两轮转速的全局变量</p>
+<pre><code class="language-C"><span class="hljs-comment">// motor_control.h</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> MOTOR_CONTROL_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> MOTOR_CONTROL_H</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> LEFT_MOTOR 0</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> RIGHT_MOTOR 1</span>
+
+<span class="hljs-keyword">extern</span> <span class="hljs-type">float</span> left_motor_speed;
+<span class="hljs-keyword">extern</span> <span class="hljs-type">float</span> right_motor_speed;
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">change_motor_speed</span><span class="hljs-params">(<span class="hljs-type">char</span> motor, <span class="hljs-type">float</span> speed)</span>;
+
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+</code></pre>
+<pre><code class="language-C"><span class="hljs-comment">// motor_control.c</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;motor_control.h&quot;</span></span>
+
+<span class="hljs-type">float</span> left_motor_speed = <span class="hljs-number">0</span>;
+<span class="hljs-type">float</span> right_motor_speed = <span class="hljs-number">0</span>;
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">change_motor_speed</span><span class="hljs-params">(<span class="hljs-type">char</span> motor, <span class="hljs-type">float</span> speed)</span>
+{
+	<span class="hljs-keyword">switch</span> (motor) {
+        <span class="hljs-keyword">case</span> LEFT_MOTOR:
+            left_motor_speed = speed;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> RIGHT_MOTOR:
+            right_motor_speed = speed;
+            <span class="hljs-keyword">break</span>;
+	}
+	<span class="hljs-comment">// 控制电机转速的各种代码</span>
+	<span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<pre><code class="language-C"><span class="hljs-comment">// mian.c</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;motor_control.h&quot;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+	change_motor_speed(LEFT_MOTOR, <span class="hljs-number">100</span>);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;左电机转速: %f\n&quot;</span>, left_motor_speed);	
+	
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
 <h3 id="末尾的话">末尾的话</h3>
 <p>绘制函数图像的程序是初学者首次接触到的较长的程序，同时，它也实现了一个较为复杂的功能</p>
 <p>如果未来要参加比赛的话，你可能需要与其他人组队完成一个比较复杂的项目，这就需要你写出逻辑清晰、文档完备的代码</p>
