@@ -212,3 +212,5 @@ Github官方教程：[https://docs.github.com/zh/get-started/start-your-journey]
 Markdown教程：
 
 Markdown + Typora/VSCode 超全教程：[https://www.bilibili.com/video/BV1hG411p7fX/](https://www.bilibili.com/video/BV1hG411p7fX/)
+
+使用Git的图形化教程：[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
