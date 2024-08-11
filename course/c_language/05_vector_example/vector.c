@@ -291,7 +291,6 @@ bool vec_truncate(Vector *vec, size_t len)
     return true;
 }
 
-
 Vector vec_drain(Vector *vec, size_t from, size_t to)
 {
     if (from > to)
@@ -309,4 +308,20 @@ Vector vec_drain(Vector *vec, size_t from, size_t to)
     ret.size = ret_vec_len;
     vec->size -= ret_vec_len;
     return ret;
+}
+
+ItemType vec_reduce(Vector *vec, Reducer reducer)
+{
+    if (vec->size <= 1)
+    {
+        return ERROR;
+    }
+    ItemType a = vec->data[0];
+    for (int i = 1; i < vec->size; i++)
+    {
+        ItemType b = vec->data[i];
+        a = reducer(a, b);
+    }
+
+    return a;
 }

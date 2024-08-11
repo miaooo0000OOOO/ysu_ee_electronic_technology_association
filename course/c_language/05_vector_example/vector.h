@@ -34,6 +34,7 @@ typedef int ItemType;
 
 typedef ItemType (*Mapper)(ItemType);
 typedef bool (*Filter)(ItemType);
+typedef ItemType (*Reducer)(ItemType, ItemType);
 
 typedef struct Vector
 {
@@ -189,5 +190,11 @@ bool vec_truncate(Vector *vec, size_t len);
 /// @param to 范围结束(不包含)
 /// @return 从原动态数组[from, to)中删除的元素组成的动态数组，如果`from`和`to`超出数组索引会什么都不做并返回空数组
 Vector vec_drain(Vector *vec, size_t from, size_t to);
+
+/// @brief 归约动态数组，通过重复应用归约操作，将动态数组归约为单个元素。
+/// @param vec 动态数组
+/// @param reducer 归约函数
+/// @return 归约结果
+ItemType vec_reduce(Vector *vec, Reducer reducer);
 
 #endif
